@@ -51,10 +51,8 @@ public class Login extends JFrame {
 	private int xMause, yMause;
 	private boolean contrasenaVisible = false;
 
-	//Constructor Login
 	public Login() {
 		
-		//Propiedades
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/Minsap.jpg")));
 		setTitle("Autenticación MINSAP");
@@ -67,8 +65,6 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-				
-		//Componentes 
 		contentPane.add(getBarraSuperior());
 		contentPane.add(getLblFoto());
 		contentPane.add(getLblIniciarSesion());
@@ -80,17 +76,12 @@ public class Login extends JFrame {
 		contentPane.add(getPasswordText());
 		contentPane.add(getBtnInicioSesion());
 
-		//Quitar las pestaña cerrar maximizar y minimizar
 		this.setUndecorated(true); 
 		this.setVisible(true);
 
 		setLocationRelativeTo(null);
 	}
-	//---------------------------------------------------------------------------------------------------------
 	
-
-	//BarraSuperior con titulo del programa y botones de cerrar y minimizar
-	//--------------------------------------------------------------------------
 	private JPanel getBarraSuperior() {
 		if (barraSuperior == null) {
 			barraSuperior = new JPanel();
@@ -110,7 +101,7 @@ public class Login extends JFrame {
 			contentPane.add(barraSuperior);
 			barraSuperior.setLayout(null);
 
-			//Botones cerrar, minimizar y JLabel con titulo del programa
+			
 			barraSuperior.add(getLblControlDeAcceso());
 			barraSuperior.add(getBtnmin());
 			barraSuperior.add(getBtnX());
@@ -126,11 +117,7 @@ public class Login extends JFrame {
 
 		return barraSuperior;
 	}
-	//--------------------------------------------------------------------------
 	
-
-	//JLabel con titulo del programa
-	//--------------------------------------------------------------------------
 	private JLabel getLblControlDeAcceso() {
 		if (lblControlDeAcceso == null) {
 			lblControlDeAcceso = new JLabel("Control de Acceso MINSAP");
@@ -140,11 +127,7 @@ public class Login extends JFrame {
 
 		return lblControlDeAcceso;
 	}
-	//--------------------------------------------------------------------------
 	
-
-	//Boton minimizar
-	//--------------------------------------------------------------------------
 	private JButton getBtnmin() {
 		if (btnmin == null) {
 			btnmin = new JButton("-");
@@ -157,18 +140,18 @@ public class Login extends JFrame {
 			btnmin.setBounds(774, 0, 38, 30);
 
 			btnmin.addMouseListener(new MouseAdapter() {
-				//Evento para dar color al entrar mouse en minimizar
+				
 				public void mouseEntered(MouseEvent arg0) {
 					btnmin.setForeground(new Color(0, 255, 255));
 				}
-				//Evento para dar color al salir mouse en minimizar
+				
 				public void mouseExited(MouseEvent arg0) {
 					btnmin.setForeground(new Color(0, 0, 0));
 				}
 			});
 
 			btnmin.addActionListener(new ActionListener() {
-				//Evento para minimizar el programa
+				
 				public void actionPerformed(ActionEvent arg0) {
 					setState(ICONIFIED);
 				}
@@ -177,11 +160,7 @@ public class Login extends JFrame {
 
 		return btnmin;
 	}
-	//--------------------------------------------------------------------------
 	
-
-	//Boton cerrar
-	//--------------------------------------------------------------------------
 	private JButton getBtnX() {
 		if (btnX == null) {
 			btnX = new JButton("X");
@@ -195,11 +174,10 @@ public class Login extends JFrame {
 
 			btnX.addMouseListener(new MouseAdapter() {
 
-				//Evento para el color de la X para cerrar el programa
 				public void mouseEntered(MouseEvent arg0) {
 					btnX.setForeground(new Color(255, 0, 0));
 				}
-				//Evento para regresar al color original la X cuando se salga
+				
 				public void mouseExited(MouseEvent arg0) {
 					btnX.setForeground(new Color(0, 0, 0));
 				}
@@ -213,10 +191,7 @@ public class Login extends JFrame {
 
 		return btnX;
 	}
-	//--------------------------------------------------------------------------
 	
-
-	//Foto del MINAP
 	
 	private JLabel getLblFoto() {
 		if (lblFoto == null) {
@@ -229,10 +204,7 @@ public class Login extends JFrame {
 
 		return lblFoto;
 	}
-	//-----------------------------------------------------------------------------------------------------------
 	
-
-	//JLabel Inico de Sesion
 	private JLabel getLblIniciarSesion() {
 		if (lblIniciarSesion == null) {
 			lblIniciarSesion = new JLabel("Inicio Sesión");
@@ -245,8 +217,6 @@ public class Login extends JFrame {
 		return lblIniciarSesion;
 	}
 
-	//JLabel Usuario
-	//-------------------------------------------------------------------
 	private JLabel getLblUsuario() {
 		if (lblUsuario == null) {
 			lblUsuario  = new JLabel("Usuario:");
@@ -258,11 +228,7 @@ public class Login extends JFrame {
 
 		return lblUsuario;
 	}
-	//--------------------------------------------------------------------
 	
-
-	//JLabel Contrasena
-	//-----------------------------------------------------------------------------
 	private JLabel getLblContrasena() {
 		if (lblContrasena == null) {
 			lblContrasena = new JLabel("Contraseña:");
@@ -274,11 +240,7 @@ public class Login extends JFrame {
 
 		return lblContrasena;
 	}
-	//-----------------------------------------------------------------------------
 	
-
-	//JLabel que indica error en caso de poner mal usuario o contrase
-	//-----------------------------------------------------------------------------
 	private JLabel getLblUserPassError() {
 		if (lblUserPassError == null) {
 			lblUserPassError = new JLabel("Usuario o contraseña incorrecta");
@@ -290,11 +252,7 @@ public class Login extends JFrame {
 
 		return lblUserPassError;
 	}
-	//-----------------------------------------------------------------------------
 	
-	
-	//Campo de texto donde guarda nombre de usuario
-	//----------------------------------------------------------------------------------------
 	private JTextField getTxfUsuario() {
 		if (txfUsuario == null) {
 			txfUsuario = new JTextField();
@@ -306,7 +264,7 @@ public class Login extends JFrame {
 			txfUsuario.setBounds(417, 219, 212, 25);
 			txfUsuario.setColumns(10);
 
-			//Mostrar campo de texto vacio 
+			
 			txfUsuario.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					txfUsuario.setText(" ");
@@ -316,11 +274,7 @@ public class Login extends JFrame {
 
 		return txfUsuario;
 	}
-	//----------------------------------------------------------------------------------------
 	
-
-	//Campo de contraseña, oculta lo escrito
-	//----------------------------------------------------------------------------------------
 	private JPasswordField getPasswordField() {
 		if (passwordField == null) {
 			passwordField = new JPasswordField();
@@ -334,11 +288,7 @@ public class Login extends JFrame {
 
 		return passwordField;
 	}
-	//----------------------------------------------------------------------------------------
 	
-
-	//Campo de texto que muestra la contraseña
-	//---------------------------------------------------------------------------------------
 	private JTextField getPasswordText() {
 		if (passwordText == null) {
 			passwordText = new JTextField();
@@ -352,11 +302,7 @@ public class Login extends JFrame {
 
 		return passwordText;
 	}
-	//--------------------------------------------------------------------------------------------------------------------------------------------------
-
 	
-	//Boton para iniciar sesion
-	//---------------------------------------------------------------------------------------------------------------------------
 	private JButton getBtnInicioSesion() {
 		if (btnInicioSesion == null) {
 			btnInicioSesion = new JButton("Iniciar Sesión");
@@ -368,17 +314,16 @@ public class Login extends JFrame {
 					String user = txfUsuario.getText();
 					String password;
 
-					//Si es visible toma el valor del password text
+					
 					if(contrasenaVisible)
-						password = passwordText.getText();//Para obtener valor de el campo contraseña
-					//Sino toma el valor del password field
+						password = passwordText.getText();
 					else
-						password = String.valueOf(passwordField.getPassword());//Para obtener valor de el campo contraseï¿½a
+						password = String.valueOf(passwordField.getPassword());
 
 					if(usuarioValido(user, password)){
 						
 						try {
-							VentanaPrincipal frame = new VentanaPrincipal();
+							Principal frame = new Principal();
 							
 							dispose();
 							
@@ -402,34 +347,32 @@ public class Login extends JFrame {
 
 			btnInicioSesion.addMouseListener(new MouseAdapter() {
 
-				//Evento para cambiar color del boton al entrar
+				
 				public void mouseEntered(MouseEvent arg0) {
 					btnInicioSesion.setBackground(new Color(60, 179, 113));
 				}
-				//Evento para cambiar color del boton al entrar
+				
 				public void mouseExited(MouseEvent arg0) {
 					btnInicioSesion.setBackground(new Color(255, 255, 255));
 				}
 			});
 
 			btnInicioSesion.addActionListener(new ActionListener() {	
-				//Evento al presionar el boton iniciar sesion	
+				
 				public void actionPerformed(ActionEvent arg0) {
 
 					String user = txfUsuario.getText();
 					String password;
 
-					//Si es visible toma el valor del password text
 					if(contrasenaVisible)
-						password = passwordText.getText();//Para obtener valor de el campo contraseï¿½a
-					//Sino toma el valor del password field
+						password = passwordText.getText();
 					else
-						password = String.valueOf(passwordField.getPassword());//Para obtener valor de el campo contraseï¿½a
+						password = String.valueOf(passwordField.getPassword());
 
 					if(usuarioValido(user, password)){
 						
 						try {
-							VentanaPrincipal frame = new VentanaPrincipal();
+							Principal frame = new Principal();
 							
 							dispose();
 							
@@ -447,11 +390,8 @@ public class Login extends JFrame {
 		
 		return btnInicioSesion;
 	}
-	//---------------------------------------------------------------------------------------------------------------------------
-
 	
-	//comprobar user y password
-	//----------------------------------------------------------------
+	
 	private boolean usuarioValido(String user, String password){
 		boolean usuarioValido = false;
 
