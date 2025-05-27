@@ -324,7 +324,7 @@ public class Login extends JFrame {
 						
 						try {
 							Principal frame = new Principal();
-							
+							frame.setVisible(true);
 							dispose();
 							
 						} catch (Exception e) {
@@ -373,7 +373,7 @@ public class Login extends JFrame {
 						
 						try {
 							Principal frame = new Principal();
-							
+							frame.setVisible(true);
 							dispose();
 							
 						} catch (Exception e) {
