@@ -114,7 +114,8 @@ public class Enfermedad implements Codificador{
 	public void setActivos(int activos) {
 		this.activos = activos;
 	}
-	
+
+
 	
 	
 }
