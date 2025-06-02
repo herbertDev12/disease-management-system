@@ -113,10 +113,6 @@ public class Principal extends JFrame {
 		mntmListaDeEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmListaDeEnfermedades);
 		
-		JMenuItem mntmEliminarEnfermedad = new JMenuItem("Eliminar enfermedad");
-		mntmEliminarEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarEnfermedades.add(mntmEliminarEnfermedad);
-		
 		JMenu mnGestionarAnlisis = new JMenu("Gestionar An\u00E1lisis");
 		mnGestionarAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.add(mnGestionarAnlisis);
