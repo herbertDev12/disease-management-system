@@ -144,7 +144,53 @@ public class Minsap {
     	    }
     	}
     	
+    	//-------------Reporte #1 Frank ---------------------------------------------------------------
+    	public ArrayList<Enfermedad> enfermedadMayoresMuertos(){
+    		ArrayList<Enfermedad> enfermedadMayoresMuertos = new ArrayList<Enfermedad>();
+    		Enfermedad mayorEnfermedad = enfermedades.get(0);
+    		for(Enfermedad enfermedad: enfermedades){
+    			if(mayorEnfermedad.getMuertos() < enfermedad.getMuertos()){
+    				mayorEnfermedad = enfermedad;
+    			}
+    		}
+    		for(Enfermedad enfermedad: enfermedades){
+    			if (enfermedad.getMuertos() == mayorEnfermedad.getMuertos()) {
+    	            enfermedadMayoresMuertos.add(enfermedad);
+    	        }
+    	    }
+    		return enfermedadMayoresMuertos;
+    	}
     	
-    
-	
+    	public ArrayList<Enfermedad>  enfermedadMayoresCurados(){
+    		ArrayList<Enfermedad> enfermedadMayoresCurados = new ArrayList<Enfermedad>();
+    		Enfermedad mayorEnfermedad = enfermedades.get(0);
+    		for(Enfermedad enfermedad: enfermedades){
+    			if(mayorEnfermedad.getCurados() < enfermedad.getCurados()){
+    				mayorEnfermedad = enfermedad;
+    			}
+    		}
+    		for(Enfermedad enfermedad: enfermedades){
+    			if (enfermedad.getCurados() == mayorEnfermedad.getCurados()) {
+    	            enfermedadMayoresCurados.add(enfermedad);
+    	        }
+    	    }
+    		return enfermedadMayoresCurados;
+    	}
+    	
+    	public ArrayList<Enfermedad> enfermedadMayoresActivos(){
+    		ArrayList<Enfermedad> enfermedadMayoresActivos = new ArrayList<Enfermedad>();
+    		Enfermedad mayorEnfermedad = enfermedades.get(0);
+    		for(Enfermedad enfermedad: enfermedades){
+    			if(mayorEnfermedad.getActivos() < enfermedad.getActivos()){
+    				mayorEnfermedad = enfermedad;
+    			}
+    		}
+    		for(Enfermedad enfermedad: enfermedades){
+    			if (enfermedad.getActivos() == mayorEnfermedad.getActivos()) {
+    	            enfermedadMayoresActivos.add(enfermedad);
+    	        }
+    	    }
+    		return enfermedadMayoresActivos;
+    	}
+	//---------------------------------------------------------------------------------------------------
 }
