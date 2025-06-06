@@ -22,6 +22,8 @@ import java.awt.Toolkit;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
@@ -105,7 +107,14 @@ public class Principal extends JFrame {
 		mnGestionarEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.add(mnGestionarEnfermedades);
 		
+		//Event Handler para llamar a RegistroEnfermedadesFrame
 		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
+		mntmAadirEnfermedad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
 		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmAadirEnfermedad);
 		
