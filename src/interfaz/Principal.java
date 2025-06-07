@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -111,8 +112,8 @@ public class Principal extends JFrame {
 		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
 		mntmAadirEnfermedad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				RegistroEnfermedadesFrame addEnfermedadFrame = new RegistroEnfermedadesFrame();
+				addEnfermedadFrame.setVisible(true);
 			}
 		});
 		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
@@ -167,7 +168,7 @@ public class Principal extends JFrame {
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(Graphics g){
-				Image img = Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/MenuPrincipal.jpg"));
+				Image img = Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/MenuPrincipalNew.jpg"));
 				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			}
 		};
