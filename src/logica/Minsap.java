@@ -1,17 +1,5 @@
 package logica;
-import java.util.ArrayList;
 
-<<<<<<< HEAD
-public class Minsap {
-	
-	private ArrayList<EnfermoNacional> enfermosNacionales;
-	private ArrayList<EnfermoEnExtranjero> enfermosEnExtranjero;
-	private ArrayList<Enfermedad> enfermedades;
-	private ArrayList<String> nombresNacionalesEnfermedadBuscada;//ver que hacer con esta lista
-	private int totalEnfermos;
-	private int totalPacientesEnfermedadX;
-
-=======
 import java.util.ArrayList;
 
 public class Minsap {
@@ -23,7 +11,6 @@ public class Minsap {
 	private int totalEnfermos;
 	private int totalPacientesEnfermedadX;
 
->>>>>>> feat/add-insert-deseases-window
 	public Minsap(){
 		enfermosNacionales = new ArrayList<>();
 		enfermedades = new ArrayList<>();
@@ -186,11 +173,7 @@ public class Minsap {
     	    }
     	    enfermedades.add(enfermedad);
     	}
-<<<<<<< HEAD
-
-=======
 /*
->>>>>>> feat/add-insert-deseases-window
     	public Enfermedad getEnfermedad(String id) {
     	    Enfermedad enfermedadEncontrada = null;
     	    boolean flag = false;
@@ -226,9 +209,5 @@ public class Minsap {
     	        System.err.println("Enfermedad con ID " + id + " no encontrada.");
     	    }
     	}
-<<<<<<< HEAD
-	
-=======
 	*/
->>>>>>> feat/add-insert-deseases-window
 }
