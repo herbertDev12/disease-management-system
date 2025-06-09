@@ -23,6 +23,9 @@ import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Principal extends JFrame {
 
 	private JPanel fotoFondo;
@@ -105,13 +108,24 @@ public class Principal extends JFrame {
 		mnGestionarEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.add(mnGestionarEnfermedades);
 		
+		//Event Handler para llamar a RegistroEnfermedadesFrame
 		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
+		mntmAadirEnfermedad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegistroEnfermedadesFrame addEnfermedadFrame = new RegistroEnfermedadesFrame();
+				addEnfermedadFrame.setVisible(true);
+			}
+		});
 		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmAadirEnfermedad);
 		
 		JMenuItem mntmListaDeEnfermedades = new JMenuItem("Lista de enfermedades");
 		mntmListaDeEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmListaDeEnfermedades);
+		
+		JMenuItem mntmEliminarEnfermedad = new JMenuItem("Eliminar enfermedad");
+		mntmEliminarEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
+		mnGestionarEnfermedades.add(mntmEliminarEnfermedad);
 		
 		JMenu mnGestionarAnlisis = new JMenu("Gestionar An\u00E1lisis");
 		mnGestionarAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
@@ -154,7 +168,7 @@ public class Principal extends JFrame {
 			private static final long serialVersionUID = 1L;
 
 			public void paintComponent(Graphics g){
-				Image img = Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/MenuPrincipal.jpg"));
+				Image img = Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/images/MenuPrincipalNew.jpg"));
 				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
 			}
 		};

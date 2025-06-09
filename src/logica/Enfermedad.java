@@ -19,8 +19,7 @@ public class Enfermedad implements Codificador{
 	private int activos;
 	
 	public Enfermedad(String nombreComun, String nombreCientifico,ArrayList<String> viasTransmision, LocalDateTime periodoIncubacion,
-			int cantidadPacientesHombres, int cantidadPacientesMujeres,HashMap<String, Integer> rangoEdades, int curados, int muertos,
-			int activos) {
+			int cantidadPacientesHombres, int cantidadPacientesMujeres, int curados, int muertos,int activos) {
 		
 		setNombreComun(nombreComun);
 		setNombreCientifico(nombreCientifico);
@@ -28,7 +27,6 @@ public class Enfermedad implements Codificador{
 		setPeriodoIncubacion(periodoIncubacion);
 		setCantidadPacientesHombres(cantidadPacientesHombres);
 		setCantidadPacientesMujeres(cantidadPacientesMujeres);
-		setRangoEdades(rangoEdades);
 		setCurados(curados);
 		setMuertos(muertos);
 		setActivos(activos); 
@@ -116,6 +114,11 @@ public class Enfermedad implements Codificador{
 	}
 
 
+	public String getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 }
