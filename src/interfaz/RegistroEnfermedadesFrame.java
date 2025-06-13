@@ -1,7 +1,7 @@
 package interfaz;
 
 import javax.swing.*;
-
+import java.io.File;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +23,7 @@ public class RegistroEnfermedadesFrame extends JFrame {
     private JTextField txtCurados;
     private JTextField txtMuertos;
     private JTextField txtActivos;
-    private static final String ARCHIVO_DATOS = "enfermedades.txt";
+    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-systemTEST\\src\\data\\enfermedades.txt";
     private static final String DELIMITADOR = "|";
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
