@@ -161,6 +161,8 @@ public class RegistroEnfermedadesFrame extends JFrame {
                 int muertos = validarNumeroPositivo(txtMuertos, "Pacientes muertos");
                 int activos = validarNumeroPositivo(txtActivos, "Casos activos");
                 
+                validarCantidadPacientes(pacientesHombres, pacientesMujeres, curados, muertos, activos);
+                
                 // Crear línea para guardar en el archivo
                 String registro = String.join(DELIMITADOR,
                         LocalDateTime.now().format(FORMATO_FECHA),
@@ -215,6 +217,17 @@ public class RegistroEnfermedadesFrame extends JFrame {
             } catch (NumberFormatException e) {
                 throw new NumberFormatException("El campo '" + nombreCampo + "' debe ser un número entero válido");
             }
+        }
+        
+        // Método para validar que la suma de los tres estados de los pacientes sea igual que la suma de hombres y mujeres
+        private void validarCantidadPacientes(int pacientesHombres, int pacientesMujeres, int curados, int muertos, int activos){
+        	
+        	int cantidadPacientesReal = pacientesHombres + pacientesMujeres;
+        	int cantidadPacientesValidar = curados + muertos + activos;
+        	
+        	if (cantidadPacientesReal != cantidadPacientesValidar){
+        		throw new IllegalArgumentException("La cantidad de pacientes curados, muertos y activos debe ser igual que la cantidad total de hombres y mujeres.");
+        	}
         }
         
         private void limpiarCampos() {
