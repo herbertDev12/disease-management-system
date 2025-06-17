@@ -4,21 +4,30 @@ import java.util.ArrayList;
 
 public class Minsap {
 	
-	private ArrayList<EnfermoNacional> enfermosNacionales;
-	private ArrayList<EnfermoEnExtranjero> enfermosEnExtranjero;
+	private ArrayList<Paciente> pacientes;
 	private ArrayList<Enfermedad> enfermedades;
+	/*
 	private ArrayList<String> nombresNacionalesEnfermedadBuscada;//ver que hacer con esta lista
 	private int totalEnfermos;
 	private int totalPacientesEnfermedadX;
+	 */
+	private String enfermedadFiltrar;
+	
 
 	public Minsap(){
-		enfermosNacionales = new ArrayList<>();
+		pacientes = new ArrayList<>();
 		enfermedades = new ArrayList<>();
-		enfermosEnExtranjero = new ArrayList<>();
-		nombresNacionalesEnfermedadBuscada= new ArrayList<>();
-		
+		}
+	
+	public String getEnfermedadFiltrar() {
+		return enfermedadFiltrar;
+	}
+
+	public void setEnfermedadFiltrar(String enfermedadFiltrar) {
+		this.enfermedadFiltrar = enfermedadFiltrar;
 	}
 	
+	/*
 	public int getTotalEnfermos() {
 		return totalEnfermos;
 	}
@@ -39,43 +48,42 @@ public class Minsap {
 	    }
 	    this.totalPacientesEnfermedadX = totalPacientesEnfermedadX;
 	}
+	*/
 
 
 
-
-
-	public void addEnfermoNacional(EnfermoNacional enfermoNacional){
-        if(enfermoNacional == null){
+	public void addPacientes(Paciente paciente){
+        if(paciente == null){
         	throw new IllegalArgumentException("El paciente no puede ser nulo");
         }
-            enfermosNacionales.add(enfermoNacional);
+        pacientes.add(paciente);
     }
         
-        public EnfermoNacional getEnfermoNacional(String id) {
-        	EnfermoNacional enfermoNacionalEncontrado = null;
+        public Paciente getPaciente(String id) {
+        	Paciente pacienteEncontrado = null;
             boolean flag = false;
             int i = 0;
             
-            while (i < enfermosNacionales.size() && !flag) {
-                if (enfermosNacionales.get(i).getId().equals(id)) {
-                	enfermoNacionalEncontrado = enfermosNacionales.get(i); 
+            while (i < pacientes.size() && !flag) {
+                if (pacientes.get(i).getId().equals(id)) {
+                	pacienteEncontrado = pacientes.get(i); 
                     flag = true;
             }
             i++;
         }
-        return enfermoNacionalEncontrado; 
+        return pacienteEncontrado; 
         }
         
-        public ArrayList<EnfermoNacional> getAllEnfermosNacionales(){
-        return enfermosNacionales;
+        public ArrayList<Paciente> getAllPaciente(){
+        return pacientes;
         }
 
-       public void actualizarEnfermoNacional(String id, EnfermoNacional enfermoNacionalActualizado) {
+       public void actualizarPaciente(String id, Paciente pacienteActualizado) {
         int i = 0;
         boolean actualizado = false;
-        while (i < enfermosNacionales.size() && !actualizado) {
-            if (enfermosNacionales.get(i).getId().equals(id)) {
-            	enfermosNacionales.set(i, enfermoNacionalActualizado); 
+        while (i < pacientes.size() && !actualizado) {
+            if (pacientes.get(i).getId().equals(id)) {
+            	pacientes.set(i, pacienteActualizado); 
                 actualizado = true; 
                 }
                 i++;
@@ -85,13 +93,13 @@ public class Minsap {
             }
         }
 
-       public void deleteEnfermoNacional(String id) {
+       public void deletePaciente(String id) {
     	    int i = 0;
     	    boolean removed = false;
 
-    	    while (i < enfermosNacionales.size() && !removed) {
-    	        if (enfermosNacionales.get(i).getId().equals(id)) {
-    	            enfermosNacionales.remove(i);
+    	    while (i < pacientes.size() && !removed) {
+    	        if (pacientes.get(i).getId().equals(id)) {
+    	            pacientes.remove(i);
     	            removed = true;
     	        } else {
     	            i++; 
@@ -103,68 +111,6 @@ public class Minsap {
     	    }
     	}
        
-       
-       
-       public void addEnfermoEnExtranjero(EnfermoEnExtranjero enfermoEnExtranjero) {
-    	    if (enfermoEnExtranjero == null) {
-    	        throw new IllegalArgumentException("Error: El paciente no puede ser nulo");
-    	    }
-    	    enfermosEnExtranjero.add(enfermoEnExtranjero);
-    	}
-
-    	public EnfermoEnExtranjero getEnfermoEnExtranjero(String id) {
-    	    EnfermoEnExtranjero enfermoEncontrado = null;
-    	    boolean flag = false;
-    	    int i = 0;
-
-    	    while (i < enfermosEnExtranjero.size() && !flag) {
-    	        if (enfermosEnExtranjero.get(i).getId().equals(id)) {
-    	            enfermoEncontrado = enfermosEnExtranjero.get(i);
-    	            flag = true;
-    	        }
-    	        i++;
-    	    }
-    	    return enfermoEncontrado;
-    	}
-
-    	public ArrayList<EnfermoEnExtranjero> getAllEnfermosEnExtranjero() {
-    	    return enfermosEnExtranjero;
-    	}
-
-    	public void actualizarEnfermoEnExtranjero(String id, EnfermoEnExtranjero enfermoEnExtranjeroActualizado) {
-    	    int i = 0;
-    	    boolean actualizado = false;
-
-    	    while (i < enfermosEnExtranjero.size() && !actualizado) {
-    	        if (enfermosEnExtranjero.get(i).getId().equals(id)) {
-    	            enfermosEnExtranjero.set(i, enfermoEnExtranjeroActualizado);
-    	            actualizado = true;
-    	        }
-    	        i++;
-    	    }
-
-    	    if (!actualizado) {
-    	        System.err.println("Enfermo en el extranjero con ID " + id + " no encontrado.");
-    	    }
-    	}
-
-    	public void deleteEnfermoEnExtranjero(String id) {
-    	    int i = 0;
-    	    boolean removed = false;
-
-    	    while (i < enfermosEnExtranjero.size() && !removed) {
-    	        if (enfermosEnExtranjero.get(i).getId().equals(id)) {
-    	            enfermosEnExtranjero.remove(i);
-    	            removed = true;
-    	        } else {
-    	            i++;
-    	        }
-    	    }
-
-    	    if (!removed) {
-    	        System.err.println("Enfermo en el extranjero con ID " + id + " no encontrado.");
-    	    }
-    	}
     	
     	
     	public void addEnfermedad(Enfermedad enfermedad) {
@@ -210,4 +156,86 @@ public class Minsap {
     	    }
     	}
 	*/
+    	//Reportes
+    	public ArrayList<Enfermedad> enfermedadMayoresMuertos() {
+    	    ArrayList<Enfermedad> enfermedadMayoresMuertos = new ArrayList<>();
+    	    
+    	    if (enfermedades.isEmpty()) {
+    	        return enfermedadMayoresMuertos;
+    	    }
+    	    
+    	    int maxMuertos = 0;
+
+    	    for (Enfermedad enfermedad : enfermedades) {
+    	        if (enfermedad.getMuertos() > maxMuertos) {
+    	            maxMuertos = enfermedad.getMuertos();
+    	            enfermedadMayoresMuertos.clear();
+    	            enfermedadMayoresMuertos.add(enfermedad);
+    	        } else if (enfermedad.getMuertos() == maxMuertos) {
+    	            enfermedadMayoresMuertos.add(enfermedad);
+    	        }
+    	    }
+
+    	    return enfermedadMayoresMuertos;
+    	}
+
+    	
+    	public ArrayList<Enfermedad> enfermedadMayoresCurados() {
+    	    ArrayList<Enfermedad> enfermedadMayoresCurados = new ArrayList<>();
+    	    
+    	    if (enfermedades.isEmpty()) {
+    	        return enfermedadMayoresCurados;
+    	    }
+    	    
+    	    int maxCurados = 0;
+
+    	    for (Enfermedad enfermedad : enfermedades) {
+    	        if (enfermedad.getCurados() > maxCurados) {
+    	            maxCurados = enfermedad.getCurados();
+    	            enfermedadMayoresCurados.clear();
+    	            enfermedadMayoresCurados.add(enfermedad);
+    	        } else if (enfermedad.getCurados() == maxCurados) {
+    	            enfermedadMayoresCurados.add(enfermedad);
+    	        }
+    	    }
+
+    	    return enfermedadMayoresCurados;
+    	}
+
+    	public ArrayList<Enfermedad> enfermedadMayoresActivos() {
+    	    ArrayList<Enfermedad> enfermedadMayoresActivos = new ArrayList<>();
+    	    
+    	    if (enfermedades.isEmpty()) {
+    	        return enfermedadMayoresActivos;
+    	    }
+    	    
+    	    int maxActivos = 0;
+
+    	    for (Enfermedad enfermedad : enfermedades) {
+    	        if (enfermedad.getActivos() > maxActivos) {
+    	            maxActivos = enfermedad.getActivos();
+    	            enfermedadMayoresActivos.clear();
+    	            enfermedadMayoresActivos.add(enfermedad);
+    	        } else if (enfermedad.getActivos() == maxActivos) {
+    	            enfermedadMayoresActivos.add(enfermedad);
+    	        }
+    	    }
+
+    	    return enfermedadMayoresActivos;
+    	}
+    	
+    	public ArrayList<Paciente> filtroEnfermosEnExtrangero(){
+    		ArrayList<Paciente> filtrados = new ArrayList<>();
+    		
+    		for(Paciente paciente : pacientes){
+    			if(paciente instanceof EnfermoEnExtranjero){
+    				if(((EnfermoEnExtranjero) paciente).getEnfermedades().equals(enfermedadFiltrar)){
+    					filtrados.add(paciente);
+    				}
+    			}
+    		}
+    		return filtrados;
+    	}
+    	
 }
+
