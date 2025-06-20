@@ -2,6 +2,9 @@ package interfaz;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+
+import utils.Validacion;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RegistroPacienteEnfermoNacional extends JFrame {
-    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-systemTEST\\src\\data\\pacientesEnfermosNacional.txt";
+    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt";
     private static final String DELIMITADOR = "|";
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     
@@ -242,7 +245,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         JScrollPane scrollTratamientos = new JScrollPane(listTratamientos);
         scrollTratamientos.setBorder(new TitledBorder("Tratamientos Registrados"));
         
-        // Panel para aÃ±adir nuevos tratamientos
+        // Panel para añadir nuevos tratamientos
         JPanel panelEntrada = new JPanel(new BorderLayout(5, 5));
         txtTratamiento = new JTextField();
         JButton btnAgregarTratamiento = new JButton("Agregar Tratamiento");
@@ -286,10 +289,10 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         public void actionPerformed(ActionEvent e) {
             try {
                 // Obtener valores de los campos básicos
-                String nombre = txtNombre.getText().trim();
-                String id = txtId.getText().trim();
-                int edad = validarNumeroPositivo(txtEdad, "Edad");
-                String sexo = txtSexo.getText().trim();
+                String nombre = Validacion.validarNombre(txtNombre, "Nombre");
+                String id = Validacion.validarIdPersona(txtId, "Id");
+                int edad = Validacion.validarEdad(txtEdad, "Edad");
+                String sexo = Validacion.validarSexoPersona(txtSexo, "Sexo");
                 String direccion = txtDireccion.getText().trim();
                 
                 // Validar campos obligatorios
@@ -349,7 +352,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
             }
         }
         
-        // Método para validar números positivos
+/*        // Método para validar números positivos
         private int validarNumeroPositivo(JTextField campo, String nombreCampo) {
             String texto = campo.getText().trim();
             
@@ -371,7 +374,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
                 throw new NumberFormatException("El campo '" + nombreCampo + "' debe ser un número entero válido");
             }
         }
-        
+  */      
         private void limpiarCampos() {
             txtNombre.setText("");
             txtId.setText("");
