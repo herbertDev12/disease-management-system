@@ -68,7 +68,7 @@ public class Validacion {
     
     public static String validarNombre(JTextField campo, String nombreCampo){
     	String texto = campo.getText().trim();
-    	
+
     	//Validar que empiece con letra mayuscula
     	//seguido de al menos una letra minuscula 
     	//^[A-Z] - significa que el primer caracter tendra que ser una letra mayuscula de la A a la Z

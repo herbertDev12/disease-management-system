@@ -89,6 +89,12 @@ public class Principal extends JFrame {
 		mnGestionarPacientes.add(mntmListaDePacientes);
 		
 		JMenuItem mntmEliminarPacienteExtranjero = new JMenuItem("Eliminar paciente extranjero");
+		mntmAadirPacienteExtranjero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegistroPacienteEnfermoExtranjero addEnfermedoExtranjeroFrame = new RegistroPacienteEnfermoExtranjero();
+				addEnfermedoExtranjeroFrame.setVisible(true);
+			}
+		});
 		mntmEliminarPacienteExtranjero.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmEliminarPacienteExtranjero);
 		
