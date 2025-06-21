@@ -34,6 +34,7 @@ public class RegistroPaciente extends JFrame {
     private JPanel panelEnfermedades;
     private JPanel panelTratamientos;
     private JPanel panelPaises;
+    private JPanel panelAnalisis;
     private JTabbedPane tabbedPane;
     
     // Componentes para datos básicos
@@ -82,6 +83,7 @@ public class RegistroPaciente extends JFrame {
         panelEnfermedades = crearPanelEnfermedades();
         panelTratamientos = crearPanelTratamientos();
         panelPaises = crearPanelPaisesVisitados();
+        panelAnalisis = crearPanelAnalisis();
         
         // Listener para cambios en el campo de diagnóstico
         txtDiagnostico.getDocument().addDocumentListener(new DocumentListener() {
@@ -122,14 +124,16 @@ public class RegistroPaciente extends JFrame {
         }
         
         // Verificar si se hizo diagnóstico positivo
-        boolean hizoDiagnostico = Validacion.volverBooleanADiagnostico(txtDiagnostico, "Diagnostico");
+        int hizoDiagnostico = Validacion.volverIntADiagnostico(txtDiagnostico, "Diagnostico");
         
         // Agregar pestañas adicionales solo si hay diagnóstico positivo
-        if (hizoDiagnostico) {
+        if (hizoDiagnostico == 1) {
             tabbedPane.addTab("Personas de Contacto", panelContactos);
             tabbedPane.addTab("Enfermedades", panelEnfermedades);
             tabbedPane.addTab("Tratamientos", panelTratamientos);
             tabbedPane.addTab("Paises visitados", panelPaises);
+        }else if(hizoDiagnostico == 2){
+        	tabbedPane.addTab("Realizar Analisis", panelAnalisis);
         }
         
         // Actualizar la interfaz
@@ -394,6 +398,13 @@ public class RegistroPaciente extends JFrame {
         panel.add(panelEntrada, BorderLayout.CENTER);
         panel.add(panelBotones, BorderLayout.SOUTH);
         panel.add(scrollPaises, BorderLayout.EAST);
+        
+        return panel;
+    }
+    
+    private JPanel crearPanelAnalisis() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
         return panel;
     }

@@ -80,9 +80,10 @@ public class Validacion {
     
     
   //Retornar un boolean en relacion con lo que el usuario ingreso en diagnostico
-    public static boolean volverBooleanADiagnostico(JTextField campo, String nombreCampo){
+    public static int volverIntADiagnostico(JTextField campo, String nombreCampo){
     	
-    	boolean isDiagnosticado = false;
+    	//1 para si , 2 para no, 3 para cualquier otra cosa
+    	int isDiagnosticado = 3;
     	
     		String texto = campo.getText().trim();
     	
@@ -90,9 +91,9 @@ public class Validacion {
     		String diagnosticoNormalizado = texto.toLowerCase();
     	
     		if (diagnosticoNormalizado.equals("sí") || diagnosticoNormalizado.equals("si")){
-    			isDiagnosticado = true;
+    			isDiagnosticado = 1;
     		}else if (diagnosticoNormalizado.equals("no")){
-    			isDiagnosticado = false;
+    			isDiagnosticado = 2;
     		}
     		return isDiagnosticado;
     		
