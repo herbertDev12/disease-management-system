@@ -2,6 +2,7 @@ package interfaz;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
 
 import utils.Validacion;
 
@@ -18,11 +19,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class RegistroPacienteEnfermoNacional extends JFrame {
-    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt";
+public class RegistroPaciente extends JFrame {
+    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt";
     private static final String DELIMITADOR = "|";
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private boolean resultadoAnalisis = false;
+    private boolean hizoDiagnostico = false;
+    
+ // Paneles para pestañas
+    private JPanel panelContactos;
+    private JPanel panelEnfermedades;
+    private JPanel panelTratamientos;
+    private JPanel panelPaises;
+    private JTabbedPane tabbedPane;
     
     // Componentes para datos básicos
     private JTextField txtNombre;
@@ -30,6 +42,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
     private JTextField txtEdad;
     private JTextField txtSexo;
     private JTextField txtDireccion;
+    private JTextField txtDiagnostico;
     
     // Componentes para contactos
     private JTextField txtContacto;
@@ -45,27 +58,45 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
     private JTextField txtTratamiento;
     private JList<String> listTratamientos;
     private DefaultListModel<String> modelTratamientos;
-
-    public RegistroPacienteEnfermoNacional() {
-        setTitle("Registro de Paciente Enfermo Nacional");
+    
+    // Componentes para paises visitados
+    private JTextField txtPais;
+    private JList<String> listPaises;
+    private DefaultListModel<String> modelPaises;
+    
+    
+    public RegistroPaciente() {
+        setTitle("Registro de Paciente Enfermo en Extranjero");
         setSize(800, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
         // Usar un panel principal con pestañas
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
         
-        // Pestaña 1: Datos básicos
+        // Pestaña 1: Datos básicos (siempre visible)
         tabbedPane.addTab("Datos Básicos", crearPanelDatosBasicos());
+
+        // Crear los paneles adicionales pero no agregarlos todavía
+        panelContactos = crearPanelContactos();
+        panelEnfermedades = crearPanelEnfermedades();
+        panelTratamientos = crearPanelTratamientos();
+        panelPaises = crearPanelPaisesVisitados();
         
-        // Pestaña 2: Personas de contacto
-        tabbedPane.addTab("Personas de Contacto", crearPanelContactos());
-        
-        // Pestaña 3: Enfermedades
-        tabbedPane.addTab("Enfermedades", crearPanelEnfermedades());
-        
-        // Pestaña 4: Tratamientos
-        tabbedPane.addTab("Tratamientos", crearPanelTratamientos());
+        // Listener para cambios en el campo de diagnóstico
+        txtDiagnostico.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+                actualizarPestañas();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                actualizarPestañas();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                actualizarPestañas();
+            }
+        });
         
         // Botón Guardar
         JButton btnGuardar = new JButton("Guardar");
@@ -79,8 +110,32 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         setLayout(new BorderLayout());
         add(tabbedPane, BorderLayout.CENTER);
         add(panelBoton, BorderLayout.SOUTH);
+        
+        // Actualizar pestañas inicialmente
+        actualizarPestañas();
     }
     
+    private void actualizarPestañas() {
+        // Eliminar todas las pestañas adicionales
+        while (tabbedPane.getTabCount() > 1) {
+            tabbedPane.removeTabAt(1);
+        }
+        
+        // Verificar si se hizo diagnóstico positivo
+        boolean hizoDiagnostico = Validacion.volverBooleanADiagnostico(txtDiagnostico, "Diagnostico");
+        
+        // Agregar pestañas adicionales solo si hay diagnóstico positivo
+        if (hizoDiagnostico) {
+            tabbedPane.addTab("Personas de Contacto", panelContactos);
+            tabbedPane.addTab("Enfermedades", panelEnfermedades);
+            tabbedPane.addTab("Tratamientos", panelTratamientos);
+            tabbedPane.addTab("Paises visitados", panelPaises);
+        }
+        
+        // Actualizar la interfaz
+        revalidate();
+        repaint();
+    }
     private JPanel crearPanelDatosBasicos() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -95,6 +150,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         txtEdad = new JTextField(20);
         txtSexo = new JTextField(20);
         txtDireccion = new JTextField(20);
+        txtDiagnostico = new JTextField(20);
         
         // Añadir componentes al panel
         gbc.gridx = 0;
@@ -131,6 +187,13 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         
         gbc.gridx = 1;
         panel.add(txtDireccion, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy++;
+        panel.add(new JLabel("Diagnóstico:"), gbc);
+        
+        gbc.gridx = 1;
+        panel.add(txtDiagnostico, gbc);
         
         return panel;
     }
@@ -285,6 +348,56 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         return panel;
     }
     
+    private JPanel crearPanelPaisesVisitados(){
+    	JPanel panel = new JPanel(new BorderLayout(10, 10));
+    	panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+    	
+    	// Modelo y lista para enfermedades
+    	modelPaises = new DefaultListModel<>();
+        listPaises = new JList<>(modelPaises);
+        JScrollPane scrollPaises = new JScrollPane(listPaises);
+        scrollPaises.setBorder(new TitledBorder("Países registrados"));
+        
+        // Panel para añadir nuevas enfermedades
+        JPanel panelEntrada = new JPanel(new BorderLayout(5, 5));
+        txtPais = new JTextField();
+        JButton btnAgregarPais = new JButton("Agregar país");
+        btnAgregarPais.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String pais = txtPais.getText().trim();
+                if (!pais.isEmpty()) {
+                    modelPaises.addElement(pais);
+                    txtPais.setText("");
+                }
+            }
+        });
+        
+        JButton btnEliminarPais = new JButton("Eliminar Seleccionada");
+        btnEliminarPais.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = listPaises.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    modelPaises.remove(selectedIndex);
+                }
+            }
+        });
+        
+        panelEntrada.add(txtPais, BorderLayout.CENTER);
+        panelEntrada.add(btnAgregarPais, BorderLayout.EAST);
+        
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        panelBotones.add(btnEliminarPais);
+        
+        panel.add(new JLabel("Añadir nuevo país visitado:"), BorderLayout.NORTH);
+        panel.add(panelEntrada, BorderLayout.CENTER);
+        panel.add(panelBotones, BorderLayout.SOUTH);
+        panel.add(scrollPaises, BorderLayout.EAST);
+        
+        return panel;
+    }
+    
     private class GuardarListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
@@ -336,7 +449,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
                
                 guardarEnArchivo(registro);
                
-                JOptionPane.showMessageDialog(RegistroPacienteEnfermoNacional.this,
+                JOptionPane.showMessageDialog(RegistroPaciente.this,
                     "Paciente registrado exitosamente en " + ARCHIVO_DATOS,
                     "Registro Exitoso",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -352,29 +465,6 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
             }
         }
         
-/*        // Método para validar números positivos
-        private int validarNumeroPositivo(JTextField campo, String nombreCampo) {
-            String texto = campo.getText().trim();
-            
-            // Validar que no esté vacío
-            if (texto.isEmpty()) {
-                throw new IllegalArgumentException("El campo '" + nombreCampo + "' no puede estar vacío");
-            }
-            
-            try {
-                int valor = Integer.parseInt(texto);
-                
-                // Validar que sea mayor que cero
-                if (valor <= 0) {
-                    throw new IllegalArgumentException("El campo '" + nombreCampo + "' debe ser mayor que cero");
-                }
-                
-                return valor;
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException("El campo '" + nombreCampo + "' debe ser un número entero válido");
-            }
-        }
-  */      
         private void limpiarCampos() {
             txtNombre.setText("");
             txtId.setText("");
@@ -393,7 +483,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         }
         
         private void mostrarError(String mensaje) {
-            JOptionPane.showMessageDialog(RegistroPacienteEnfermoNacional.this,
+            JOptionPane.showMessageDialog(RegistroPaciente.this,
                 mensaje,
                 "Error",
                 JOptionPane.ERROR_MESSAGE);
@@ -404,7 +494,7 @@ public class RegistroPacienteEnfermoNacional extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new RegistroPacienteEnfermoNacional().setVisible(true);
+                new RegistroPaciente().setVisible(true);
             }
         });
     }

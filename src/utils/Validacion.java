@@ -77,4 +77,25 @@ public class Validacion {
     	}
     	return texto;
     }
+    
+    
+  //Retornar un boolean en relacion con lo que el usuario ingreso en diagnostico
+    public static boolean volverBooleanADiagnostico(JTextField campo, String nombreCampo){
+    	
+    	boolean isDiagnosticado = false;
+    	
+    		String texto = campo.getText().trim();
+    	
+    		//Para que sea siempre valida la palabra sin importar si hay letras en mayusculas o minusculas
+    		String diagnosticoNormalizado = texto.toLowerCase();
+    	
+    		if (diagnosticoNormalizado.equals("sí") || diagnosticoNormalizado.equals("si")){
+    			isDiagnosticado = true;
+    		}else if (diagnosticoNormalizado.equals("no")){
+    			isDiagnosticado = false;
+    		}
+    		return isDiagnosticado;
+    		
+    }
+
 }

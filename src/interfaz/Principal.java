@@ -80,41 +80,23 @@ public class Principal extends JFrame {
 		mnGestionarPacientes.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.add(mnGestionarPacientes);
 		
-		JMenuItem mntmAadirPacienteExtranjero = new JMenuItem("A\u00F1adir paciente extranjero");
-		mntmAadirPacienteExtranjero.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarPacientes.add(mntmAadirPacienteExtranjero);
+		JMenuItem mntmAadirPaciente = new JMenuItem("A\u00F1adir paciente");
+		mntmAadirPaciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegistroPaciente addPacienteFrame = new RegistroPaciente();
+				addPacienteFrame.setVisible(true);
+			}
+		});
+		mntmAadirPaciente.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
+		mnGestionarPacientes.add(mntmAadirPaciente);
 		
 		JMenuItem mntmListaDePacientes = new JMenuItem("Lista de pacientes extranjeros ");
 		mntmListaDePacientes.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmListaDePacientes);
 		
-		JMenuItem mntmEliminarPacienteExtranjero = new JMenuItem("Eliminar paciente extranjero");
-		mntmAadirPacienteExtranjero.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroPacienteEnfermoExtranjero addEnfermedoExtranjeroFrame = new RegistroPacienteEnfermoExtranjero();
-				addEnfermedoExtranjeroFrame.setVisible(true);
-			}
-		});
-		mntmEliminarPacienteExtranjero.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarPacientes.add(mntmEliminarPacienteExtranjero);
-		
-		JMenuItem mntmAadirPacienteNacional = new JMenuItem("A\u00F1adir paciente nacional");
-		mntmAadirPacienteNacional.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroPacienteEnfermoNacional addEnfermedoNacionalFrame = new RegistroPacienteEnfermoNacional();
-				addEnfermedoNacionalFrame.setVisible(true);
-			}
-		});
-		mntmAadirPacienteNacional.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarPacientes.add(mntmAadirPacienteNacional);
-		
 		JMenuItem mntmListaDePacientes_1 = new JMenuItem("Lista de pacientes nacionales ");
 		mntmListaDePacientes_1.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmListaDePacientes_1);
-		
-		JMenuItem mntmEliminarPacienteNacional = new JMenuItem("Eliminar paciente nacional");
-		mntmEliminarPacienteNacional.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarPacientes.add(mntmEliminarPacienteNacional);
 		
 		JMenu mnGestionarEnfermedades = new JMenu("Gestionar Enfermedades");
 		mnGestionarEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
