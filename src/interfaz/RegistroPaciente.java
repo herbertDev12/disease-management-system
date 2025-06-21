@@ -3,7 +3,7 @@ package interfaz;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
-
+import logica.Minsap;
 import utils.Validacion;
 
 import java.awt.*;
@@ -19,8 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+
 
 public class RegistroPaciente extends JFrame {
     private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt";
@@ -405,6 +408,17 @@ public class RegistroPaciente extends JFrame {
     private JPanel crearPanelAnalisis() {
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        
+        JButton btnRealizarAnalisis = new JButton("Realizar Analisis");
+        btnRealizarAnalisis.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            	boolean resultado = Minsap.realizarAnalisis(); // La UI no responderá por 8 segundos...para simular que pasaron los 15 dias
+               
+                
+            }
+        });
         
         return panel;
     }

@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Minsap {
 	
@@ -18,6 +19,19 @@ public class Minsap {
 		pacientes = new ArrayList<>();
 		enfermedades = new ArrayList<>();
 		}
+	
+	public static boolean realizarAnalisis() {
+        try {
+            // Esperar 8 segundos
+            TimeUnit.SECONDS.sleep(8);
+            
+            // Devolver true o false aleatoriamente
+            return Math.random() < 0.5;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restaurar el estado de interrupción
+            return false; // Valor por defecto en caso de interrupción
+        }
+    }
 	
 	public String getEnfermedadFiltrar() {
 		return enfermedadFiltrar;
