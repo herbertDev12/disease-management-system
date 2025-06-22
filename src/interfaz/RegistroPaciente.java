@@ -3,6 +3,7 @@ package interfaz;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
+
 import logica.Minsap;
 import utils.Validacion;
 
@@ -30,7 +31,8 @@ public class RegistroPaciente extends JFrame {
     private static final String DELIMITADOR = "|";
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private boolean resultadoAnalisis = false;
-    private boolean hizoDiagnostico = false;
+    private int hizoDiagnostico;
+    
     
  // Paneles para pestañas
     private JPanel panelContactos;
@@ -67,6 +69,8 @@ public class RegistroPaciente extends JFrame {
     private JTextField txtPais;
     private JList<String> listPaises;
     private DefaultListModel<String> modelPaises;
+    
+    
     
     
     public RegistroPaciente() {
@@ -127,7 +131,7 @@ public class RegistroPaciente extends JFrame {
         }
         
         // Verificar si se hizo diagnóstico positivo
-        int hizoDiagnostico = Validacion.volverIntADiagnostico(txtDiagnostico, "Diagnostico");
+        hizoDiagnostico = Validacion.volverIntADiagnostico(txtDiagnostico, "Diagnostico");
         
         // Agregar pestañas adicionales solo si hay diagnóstico positivo
         if (hizoDiagnostico == 1) {
@@ -137,6 +141,7 @@ public class RegistroPaciente extends JFrame {
             tabbedPane.addTab("Paises visitados", panelPaises);
         }else if(hizoDiagnostico == 2){
         	tabbedPane.addTab("Realizar Analisis", panelAnalisis);
+        	//es aki lo q qiero hacer
         }
         
         // Actualizar la interfaz
@@ -406,17 +411,40 @@ public class RegistroPaciente extends JFrame {
     }
     
     private JPanel crearPanelAnalisis() {
-        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        JPanel panel = new JPanel();
+        panel.setLayout(null); // Usamos layout null para posicionamiento absoluto
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setPreferredSize(new Dimension(300, 300)); 
         
-        JButton btnRealizarAnalisis = new JButton("Realizar Analisis");
-        btnRealizarAnalisis.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	
-            	boolean resultado = Minsap.realizarAnalisis(); // La UI no responderá por 8 segundos...para simular que pasaron los 15 dias
-               
+        // Configurar fuente más grande y gruesa
+        Font fuenteGrande = new Font("Arial", Font.BOLD, 16);
+        Font fuenteResultado = new Font("Arial", Font.BOLD, 14);
+        
+        JLabel lblPresioneElBoton = new JLabel("Presione el botón para realizar el análisis y espere 8 segundos...");
+        lblPresioneElBoton.setFont(fuenteGrande);
+        lblPresioneElBoton.setBounds(50, 30, 400, 40); 
+        panel.add(lblPresioneElBoton);
+        
+        JButton btnAnalizar = new JButton("REALIZAR ANÁLISIS");
+        btnAnalizar.setFont(new Font("Arial", Font.BOLD, 18)); 
+        btnAnalizar.setBounds(100, 80, 300, 60); // Botón más grande
+        panel.add(btnAnalizar);
+        
+        // Label para mostrar el resultado inicialmente vacío
+        final JLabel lblResultado = new JLabel("");
+        lblResultado.setFont(fuenteResultado);
+        lblResultado.setBounds(50, 180, 400, 40); 
+        lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(lblResultado);
+        
+        btnAnalizar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            	resultadoAnalisis = Minsap.realizarAnalisis(); 
+                String resultadoToString = resultadoAnalisis ? "POSITIVO" : "NEGATIVO";
+                lblResultado.setText("El resultado del análisis fue: " + resultadoToString);
                 
+                // Cambiar color según el resultado
+                lblResultado.setForeground(resultadoAnalisis ? Color.GREEN : Color.RED);
             }
         });
         
@@ -462,6 +490,7 @@ public class RegistroPaciente extends JFrame {
                 // Crear línea para guardar en el archivo
                 String registro = String.join(DELIMITADOR,
                         LocalDateTime.now().format(FORMATO_FECHA),
+                        String.valueOf(resultadoAnalisis),
                         nombre,
                         id,
                         String.valueOf(edad),
