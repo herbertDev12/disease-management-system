@@ -56,7 +56,6 @@ public class RegistroPaciente extends JFrame {
     private DefaultListModel<String> modelContactos;
     
     // Componentes para enfermedades
-    private JTextField txtEnfermedad;
     private JList<String> listEnfermedades;
     private DefaultListModel<String> modelEnfermedades;
     
@@ -268,7 +267,7 @@ public class RegistroPaciente extends JFrame {
     }
     
     private JPanel crearPanelEnfermedades() {
-        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        final JPanel panel = new JPanel(new BorderLayout(10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
         // Modelo y lista para enfermedades
@@ -276,23 +275,170 @@ public class RegistroPaciente extends JFrame {
         listEnfermedades = new JList<>(modelEnfermedades);
         JScrollPane scrollEnfermedades = new JScrollPane(listEnfermedades);
         scrollEnfermedades.setBorder(new TitledBorder("Enfermedades Registradas"));
+        scrollEnfermedades.setPreferredSize(new Dimension(300, 400));
         
-        // Panel para añadir nuevas enfermedades
-        JPanel panelEntrada = new JPanel(new BorderLayout(5, 5));
-        txtEnfermedad = new JTextField();
+        // Panel para el formulario de enfermedades
+        JPanel formularioPanel = new JPanel(new GridBagLayout());
+        formularioPanel.setBorder(BorderFactory.createTitledBorder("Agregar Nueva Enfermedad"));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        
+        // Campos del formulario
+        final JTextField txtNombreComun = new JTextField(20);
+        final JTextField txtNombreCientifico = new JTextField(20);
+        
+        String[] viasTransmision = {
+            "Vectorial", "Sanguinea", "Sexual", "Aerea", 
+            "Oral", "Materna", "Zoonotica", "Fecal"
+        };
+        final JComboBox<String> comboViasTransmision = new JComboBox<>(viasTransmision);
+        comboViasTransmision.setSelectedIndex(-1);
+        
+        final JTextField txtPeriodoIncubacion = new JTextField(20);
+        
+        String[] estadosPaciente = {"curado", "muerto", "activo"};
+        final JComboBox<String> comboEstadoPaciente = new JComboBox<>(estadosPaciente);
+        comboEstadoPaciente.setSelectedIndex(-1); // Seleccionar nada por defecto
+        
+        // Agregar campos al formulario
+        int row = 0;
+        gbc.gridx = 0; gbc.gridy = row++;
+        formularioPanel.add(new JLabel("Nombre Común:"), gbc);
+        gbc.gridx = 1;
+        formularioPanel.add(txtNombreComun, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = row++;
+        formularioPanel.add(new JLabel("Nombre Científico:"), gbc);
+        gbc.gridx = 1;
+        formularioPanel.add(txtNombreCientifico, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = row++;
+        formularioPanel.add(new JLabel("Vías de Transmisión:"), gbc);
+        gbc.gridx = 1;
+        formularioPanel.add(comboViasTransmision, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = row++;
+        formularioPanel.add(new JLabel("Período Incubación (días):"), gbc);
+        gbc.gridx = 1;
+        formularioPanel.add(txtPeriodoIncubacion, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = row++;
+        formularioPanel.add(new JLabel("Estado paciente:"), gbc);
+        gbc.gridx = 1;
+        formularioPanel.add(comboEstadoPaciente, gbc);
+        
+        // Botones
         JButton btnAgregarEnfermedad = new JButton("Agregar Enfermedad");
+        JButton btnEliminarEnfermedad = new JButton("Eliminar Seleccionada");
+        
+        gbc.gridx = 0; gbc.gridy = row++;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        formularioPanel.add(btnAgregarEnfermedad, gbc);
+        
+        // Panel para el formulario con desplazamiento
+        JScrollPane formularioScroll = new JScrollPane(formularioPanel);
+        formularioScroll.setPreferredSize(new Dimension(400, 300)); // Ajustado para el nuevo campo
+        
+        // Panel de botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.add(btnEliminarEnfermedad);
+        
+        // Organizar componentes principales
+        panel.add(formularioScroll, BorderLayout.CENTER);
+        panel.add(scrollEnfermedades, BorderLayout.EAST);
+        panel.add(panelBotones, BorderLayout.SOUTH);
+        
+        // Acción para agregar enfermedad
         btnAgregarEnfermedad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String enfermedad = txtEnfermedad.getText().trim();
-                if (!enfermedad.isEmpty()) {
+                try {
+                    // Validar campos obligatorios
+                    String nombreComun = txtNombreComun.getText().trim();
+                    if (nombreComun.isEmpty()) {
+                        throw new IllegalArgumentException("El nombre común es obligatorio");
+                    }
+                    
+                    String viaTransmision = (String) comboViasTransmision.getSelectedItem();
+                    if (viaTransmision == null) {
+                        throw new IllegalArgumentException("Debe seleccionar una vía de transmisión");
+                    }
+                    
+                    // Obtener el estado del paciente
+                    String estadoPaciente = (String) comboEstadoPaciente.getSelectedItem();
+                    
+                    // Validar campo numérico
+                    int periodoIncubacion = validarNumero(txtPeriodoIncubacion, "Período de incubación", true);
+                    
+                    // Verificar si ya existe una enfermedad con estado "muerto"
+                    boolean existeMuerto = false;
+                    for (int i = 0; i < modelEnfermedades.size() && !existeMuerto; i++) {
+                        String enfermedad = modelEnfermedades.getElementAt(i);
+                        if (enfermedad.contains("Estado: muerto")) {
+                            existeMuerto = true;
+                        }
+                    }
+                    
+                    // Si existe una enfermedad con estado "muerto", solo permitir agregar otra si también es "muerto"
+                    if (existeMuerto && !"muerto".equals(estadoPaciente)) {
+                        throw new IllegalArgumentException("No se puede agregar una enfermedad con estado '" + estadoPaciente + 
+                                                           "' porque ya existe una enfermedad con estado 'muerto'");
+                    }
+                    
+                    // Si se intenta agregar una enfermedad no "muerto" cuando ya existe una "muerto"
+                    if (existeMuerto && !"muerto".equals(estadoPaciente)) {
+                        throw new IllegalArgumentException("Solo se pueden agregar enfermedades con estado 'muerto' cuando ya existe una enfermedad con ese estado");
+                    }
+                    
+                    // Crear representación de la enfermedad
+                    String enfermedad = String.format(
+                        "%s (%s) - Transmisión: %s - Incubación: %d días - Estado: %s",
+                        nombreComun,
+                        txtNombreCientifico.getText().trim(),
+                        viaTransmision,
+                        periodoIncubacion,
+                        estadoPaciente
+                    );
+                    
+                    // Agregar al modelo
                     modelEnfermedades.addElement(enfermedad);
-                    txtEnfermedad.setText("");
+                    
+                    // Limpiar campos
+                    txtNombreComun.setText("");
+                    txtNombreCientifico.setText("");
+                    comboViasTransmision.setSelectedIndex(-1);
+                    txtPeriodoIncubacion.setText("");
+                    comboEstadoPaciente.setSelectedIndex(-1); // Volver a estado predeterminado
+                    
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(panel, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            
+            private int validarNumero(JTextField campo, String nombreCampo, boolean permitirCero) {
+                String texto = campo.getText().trim();
+                if (texto.isEmpty()) {
+                    return 0; // Valor por defecto si está vacío
+                }
+                try {
+                    int valor = Integer.parseInt(texto);
+                    if (valor < 0) {
+                        throw new IllegalArgumentException("El campo '" + nombreCampo + "' debe ser un número positivo");
+                    }
+                    if (!permitirCero && valor == 0) {
+                        throw new IllegalArgumentException("El campo '" + nombreCampo + "' debe ser mayor que cero");
+                    }
+                    return valor;
+                } catch (NumberFormatException ex) {
+                    throw new IllegalArgumentException("El campo '" + nombreCampo + "' debe ser un número válido");
                 }
             }
         });
         
-        JButton btnEliminarEnfermedad = new JButton("Eliminar Seleccionada");
+        // Acción para eliminar enfermedad
         btnEliminarEnfermedad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -303,20 +449,8 @@ public class RegistroPaciente extends JFrame {
             }
         });
         
-        panelEntrada.add(txtEnfermedad, BorderLayout.CENTER);
-        panelEntrada.add(btnAgregarEnfermedad, BorderLayout.EAST);
-        
-        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        panelBotones.add(btnEliminarEnfermedad);
-        
-        panel.add(new JLabel("Añadir nueva enfermedad:"), BorderLayout.NORTH);
-        panel.add(panelEntrada, BorderLayout.CENTER);
-        panel.add(panelBotones, BorderLayout.SOUTH);
-        panel.add(scrollEnfermedades, BorderLayout.EAST);
-        
         return panel;
     }
-    
     private JPanel crearPanelTratamientos() {
         JPanel panel = new JPanel(new BorderLayout(10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -494,8 +628,7 @@ public class RegistroPaciente extends JFrame {
                 
                 // Crear línea para guardar en el archivo
                 String registro = String.join(DELIMITADOR,
-                        LocalDateTime.now().format(FORMATO_FECHA),
-                        String.valueOf(resultadoAnalisis),
+                        LocalDateTime.now().format(FORMATO_FECHA),                       
                         nombre,
                         id,
                         String.valueOf(edad),
