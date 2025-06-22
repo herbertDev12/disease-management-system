@@ -12,7 +12,6 @@ public class Minsap {
 	private int totalEnfermos;
 	private int totalPacientesEnfermedadX;
 	 */
-	private String enfermedadFiltrar;
 	
 
 	public Minsap(){
@@ -32,14 +31,6 @@ public class Minsap {
             return false; // Valor por defecto en caso de interrupción
         }
     }
-	
-	public String getEnfermedadFiltrar() {
-		return enfermedadFiltrar;
-	}
-
-	public void setEnfermedadFiltrar(String enfermedadFiltrar) {
-		this.enfermedadFiltrar = enfermedadFiltrar;
-	}
 	
 	/*
 	public int getTotalEnfermos() {
@@ -148,11 +139,11 @@ public class Minsap {
     	    }
     	    return enfermedadEncontrada;
     	}
-
+*/
     	public ArrayList<Enfermedad> getAllEnfermedades() {
     	    return enfermedades;
     	}
-
+/*
     	public void actualizarEnfermedad(String id, Enfermedad enfermedadActualizada) {
     	    int i = 0;
     	    boolean actualizado = false;
@@ -238,7 +229,7 @@ public class Minsap {
     	    return enfermedadMayoresActivos;
     	}
     	
-    	public ArrayList<Paciente> filtroEnfermosEnExtrangero(){
+    	public ArrayList<Paciente> filtroEnfermosEnExtrangero(String enfermedadFiltrar){
     		ArrayList<Paciente> filtrados = new ArrayList<>();
     		
     		for(Paciente paciente : pacientes){
