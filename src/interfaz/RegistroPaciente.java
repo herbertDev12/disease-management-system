@@ -69,9 +69,9 @@ public class RegistroPaciente extends JFrame {
     private JTextField txtPais;
     private JList<String> listPaises;
     private DefaultListModel<String> modelPaises;
-    
-    
-    
+    private JComboBox<String> comboEnfermoExterior;
+    private JButton btnAgregarPais;
+    private JButton btnEliminarPais;
     
     public RegistroPaciente() {
         setTitle("Registro de Paciente Enfermo en Extranjero");
@@ -506,20 +506,41 @@ public class RegistroPaciente extends JFrame {
         return panel;
     }
     
-    private JPanel crearPanelPaisesVisitados(){
-    	JPanel panel = new JPanel(new BorderLayout(10, 10));
-    	panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
-    	
-    	// Modelo y lista para enfermedades
-    	modelPaises = new DefaultListModel<>();
-        listPaises = new JList<>(modelPaises);
-        JScrollPane scrollPaises = new JScrollPane(listPaises);
-        scrollPaises.setBorder(new TitledBorder("Países registrados"));
+    private JPanel crearPanelPaisesVisitados() {
+        final JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
-        // Panel para añadir nuevas enfermedades
+        // Panel para la pregunta
+        JPanel panelPregunta = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel lblPregunta = new JLabel("¿Se enfermó en el exterior?");
+        String[] opciones = {"Seleccione", "Sí", "No"};
+        comboEnfermoExterior = new JComboBox<>(opciones);
+        comboEnfermoExterior.setSelectedIndex(0); // Inicialmente en "Seleccione"
+        
+        panelPregunta.add(lblPregunta);
+        panelPregunta.add(comboEnfermoExterior);
+        
+        mainPanel.add(panelPregunta, BorderLayout.NORTH);
+        
+        // Panel para el contenido de países (inicialmente deshabilitado)
+        final JPanel panelPaisesContent = new JPanel(new BorderLayout(10, 10));
+        panelPaisesContent.setEnabled(false);
+        
+        // Modelo y lista para países
+        modelPaises = new DefaultListModel<>();
+        listPaises = new JList<>(modelPaises);
+        final JScrollPane scrollPaises = new JScrollPane(listPaises);
+        scrollPaises.setBorder(new TitledBorder("Países registrados"));
+        scrollPaises.setEnabled(false);
+        
+        // Panel para añadir nuevos países
         JPanel panelEntrada = new JPanel(new BorderLayout(5, 5));
         txtPais = new JTextField();
-        JButton btnAgregarPais = new JButton("Agregar país");
+        txtPais.setEnabled(false);
+        
+        btnAgregarPais = new JButton("Agregar país");
+        btnAgregarPais.setEnabled(false);
+        
         btnAgregarPais.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -531,7 +552,9 @@ public class RegistroPaciente extends JFrame {
             }
         });
         
-        JButton btnEliminarPais = new JButton("Eliminar Seleccionada");
+        btnEliminarPais = new JButton("Eliminar Seleccionado");
+        btnEliminarPais.setEnabled(false);
+        
         btnEliminarPais.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -548,14 +571,39 @@ public class RegistroPaciente extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         panelBotones.add(btnEliminarPais);
         
-        panel.add(new JLabel("Añadir nuevo país visitado:"), BorderLayout.NORTH);
-        panel.add(panelEntrada, BorderLayout.CENTER);
-        panel.add(panelBotones, BorderLayout.SOUTH);
-        panel.add(scrollPaises, BorderLayout.EAST);
+        panelPaisesContent.add(new JLabel("Añadir nuevo país visitado:"), BorderLayout.NORTH);
+        panelPaisesContent.add(panelEntrada, BorderLayout.CENTER);
+        panelPaisesContent.add(panelBotones, BorderLayout.SOUTH);
+        panelPaisesContent.add(scrollPaises, BorderLayout.EAST);
         
-        return panel;
+        mainPanel.add(panelPaisesContent, BorderLayout.CENTER);
+        
+        // Listener para la selección de la pregunta
+        comboEnfermoExterior.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String seleccion = (String) comboEnfermoExterior.getSelectedItem();
+                if (seleccion != null) {
+                    if (seleccion.equals("Sí")) {
+                        // Habilitar componentes para agregar países
+                        panelPaisesContent.setEnabled(true);
+                        scrollPaises.setEnabled(true);
+                        txtPais.setEnabled(true);
+                        btnAgregarPais.setEnabled(true);
+                        btnEliminarPais.setEnabled(true);
+                    } else if (seleccion.equals("No")) {
+                        // Eliminar la pestaña de países visitados
+                        int index = tabbedPane.indexOfComponent(mainPanel);
+                        if (index != -1) {
+                            tabbedPane.remove(index);
+                        }
+                    }
+                }
+            }
+        });
+        
+        return mainPanel;
     }
-    
     private JPanel crearPanelAnalisis() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
