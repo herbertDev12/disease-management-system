@@ -1,8 +1,8 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,10 +15,13 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import logica.Minsap;
+import logica.Enfermedad;
 
 public class EnfermedadMayoresXEstado extends JFrame {
 
 	private JPanel contentPane;
+	private JList<String> listaDatos;
 
 	/**
 	 * Launch the application.
@@ -36,9 +39,6 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public EnfermedadMayoresXEstado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
@@ -47,13 +47,24 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(12, 68, 408, 502);
-		contentPane.add(list);
+		listaDatos = new JList<>();
+		listaDatos.setBounds(12, 68, 408, 502);
+		contentPane.add(listaDatos);
 		
 		JButton Curados = new JButton("Curados");
 		Curados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				 Minsap minsap = new Minsap();
+			        ArrayList<Enfermedad> lista = minsap.enfermedadMayoresCurados();
+
+			        ArrayList<String> datos = new ArrayList<>();
+			        for (Enfermedad e : lista) {
+			            String info = "Nombre: " + e.getNombreComun();
+			                         
+			            datos.add(info);
+			        }
+
+			        listaDatos.setListData(datos.toArray(new String[0]));
 			}
 		});
 		Curados.setBounds(12, 30, 97, 25);
@@ -62,31 +73,40 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		JButton Activos = new JButton("Activos");
 		Activos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+				  Minsap minsap = new Minsap();
+			        ArrayList<Enfermedad> lista = minsap.enfermedadMayoresActivos();
+
+			        ArrayList<String> datos = new ArrayList<>();
+			        for (Enfermedad e : lista) {
+			            String info = "Nombre: " + e.getNombreComun();
+			                         
+			            datos.add(info);
+			        }
+
+			        listaDatos.setListData(datos.toArray(new String[0]));
+			    }
+			});
+
 		Activos.setBounds(121, 30, 97, 25);
 		contentPane.add(Activos);
 		
 		JButton muertos = new JButton("Muertos");
-		muertos.setBounds(230, 30, 97, 25);
-		contentPane.add(muertos);
-	}
+		muertos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				  Minsap minsap = new Minsap();
+			        ArrayList<Enfermedad> lista = minsap.enfermedadMayoresMuertos();
 
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
+			        ArrayList<String> datos = new ArrayList<>();
+			        for (Enfermedad e : lista) {
+			            String info = "Nombre: " + e.getNombreComun();
+			                         
+			            datos.add(info);
+			        }
+
+			        listaDatos.setListData(datos.toArray(new String[0]));
 			}
 		});
+		muertos.setBounds(230, 30, 97, 25);
+		contentPane.add(muertos);
 	}
 }

@@ -147,6 +147,13 @@ public class Principal extends JFrame {
 		mnReportes.add(mntmEnfermosEnEl);
 		
 		JMenuItem mntmEnfermedadesConMayor = new JMenuItem("Enfermedades con mayor cantidad de pacientes en cierto estado ");
+		mntmEnfermedadesConMayor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EnfermedadMayoresXEstado enfermedadMayoresXEstado = new EnfermedadMayoresXEstado();
+				enfermedadMayoresXEstado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				enfermedadMayoresXEstado.setVisible(true);
+			}
+		});
 		mntmEnfermedadesConMayor.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermedadesConMayor);
 		
