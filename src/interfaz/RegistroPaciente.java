@@ -32,7 +32,8 @@ public class RegistroPaciente extends JFrame {
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private boolean resultadoAnalisis = false;
     private int hizoDiagnostico;
-    
+    private boolean analisisRealizado = false;
+    private JButton btnAnalizar; 
     
  // Paneles para pestañas
     private JPanel panelContactos;
@@ -135,8 +136,11 @@ public class RegistroPaciente extends JFrame {
         // Agregar pestañas adicionales solo si hay diagnóstico positivo
         if (hizoDiagnostico == 1) {
             agregarPestañasAdicionales();
-        } else if (hizoDiagnostico == 2) {
+        } else if (hizoDiagnostico == 2 && !analisisRealizado) {
+            // Solo mostrar análisis si no se ha realizado
             tabbedPane.addTab("Realizar Analisis", panelAnalisis);
+        } else if (analisisRealizado) {
+            // Después del análisis, mostrar pestañas según resultado
             if (resultadoAnalisis) {
                 agregarPestañasAdicionales();
             }
@@ -146,6 +150,7 @@ public class RegistroPaciente extends JFrame {
         revalidate();
         repaint();
     }
+
 
     // Método para agregar todas las pestañas adicionales
     private void agregarPestañasAdicionales() {
@@ -565,7 +570,7 @@ public class RegistroPaciente extends JFrame {
         lblPresioneElBoton.setBounds(50, 30, 400, 40); 
         panel.add(lblPresioneElBoton);
         
-        JButton btnAnalizar = new JButton("REALIZAR ANÁLISIS");
+        btnAnalizar = new JButton("REALIZAR ANÁLISIS");  // Asignar a campo de clase
         btnAnalizar.setFont(new Font("Arial", Font.BOLD, 18)); 
         btnAnalizar.setBounds(100, 80, 300, 60);
         panel.add(btnAnalizar);
@@ -583,13 +588,28 @@ public class RegistroPaciente extends JFrame {
                 lblResultado.setText("El resultado del análisis fue: " + resultadoToString);
                 lblResultado.setForeground(resultadoAnalisis ? Color.GREEN : Color.RED);
                 
-                // Llamar a actualizarPestañas después de obtener el resultado
+                // Actualizar el campo de diagnóstico
+                if (resultadoAnalisis) {
+                    txtDiagnostico.setText("Sí");
+                    txtDiagnostico.setEditable(false);
+                } else {
+                    txtDiagnostico.setText("No");
+                    txtDiagnostico.setEditable(false);
+                }
+                
+                // Marcar análisis como realizado
+                analisisRealizado = true;
+                
+                // Deshabilitar botón para evitar múltiples análisis
+                btnAnalizar.setEnabled(false);
+                
+                // Actualizar pestañas (quitará la pestaña de análisis)
                 actualizarPestañas();
             }
         });
         
         return panel;
-    }  
+    }
     private class GuardarListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
@@ -666,6 +686,19 @@ public class RegistroPaciente extends JFrame {
             modelContactos.clear();
             modelEnfermedades.clear();
             modelTratamientos.clear();
+            txtDiagnostico.setEditable(true);  // Restaurar edición
+            modelContactos.clear();
+            modelEnfermedades.clear();
+            modelTratamientos.clear();
+            
+            // Resetear estado de análisis
+            analisisRealizado = false;
+            resultadoAnalisis = false;
+            
+            // Restaurar botón de análisis
+            if (btnAnalizar != null) {
+                btnAnalizar.setEnabled(true);
+            }
         }
         
         private void guardarEnArchivo(String registro) throws IOException {
