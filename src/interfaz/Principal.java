@@ -143,13 +143,20 @@ public class Principal extends JFrame {
 		menuBar.add(mnReportes);
 		
 		JMenuItem mntmEnfermosEnEl = new JMenuItem("Enfermos en el extranjero dada una enfermedad");
+		mntmEnfermosEnEl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FiltrarEnfermosEnExtranjero filtrarEnfermosEnExtranjero = FiltrarEnfermosEnExtranjero.getInstance();;
+				filtrarEnfermosEnExtranjero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				filtrarEnfermosEnExtranjero.setVisible(true);
+			}
+		});
 		mntmEnfermosEnEl.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermosEnEl);
 		
 		JMenuItem mntmEnfermedadesConMayor = new JMenuItem("Enfermedades con mayor cantidad de pacientes en cierto estado ");
 		mntmEnfermedadesConMayor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EnfermedadMayoresXEstado enfermedadMayoresXEstado = new EnfermedadMayoresXEstado();
+				EnfermedadMayoresXEstado enfermedadMayoresXEstado = EnfermedadMayoresXEstado.getInstance();
 				enfermedadMayoresXEstado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				enfermedadMayoresXEstado.setVisible(true);
 			}

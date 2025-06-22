@@ -19,7 +19,7 @@ import logica.Minsap;
 import logica.Enfermedad;
 
 public class EnfermedadMayoresXEstado extends JFrame {
-
+	private static EnfermedadMayoresXEstado instancia;
 	private JPanel contentPane;
 	private JList<String> listaDatos;
 
@@ -39,7 +39,7 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		});
 	}
 
-	public EnfermedadMayoresXEstado() {
+	private EnfermedadMayoresXEstado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
 		contentPane = new JPanel();
@@ -109,4 +109,12 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		muertos.setBounds(230, 30, 97, 25);
 		contentPane.add(muertos);
 	}
+	
+	public static EnfermedadMayoresXEstado getInstance() {
+		if (instancia == null) {
+			instancia = new EnfermedadMayoresXEstado();
+		}
+		return instancia;
+	}
+
 }
