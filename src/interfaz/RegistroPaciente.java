@@ -135,18 +135,25 @@ public class RegistroPaciente extends JFrame {
         
         // Agregar pestañas adicionales solo si hay diagnóstico positivo
         if (hizoDiagnostico == 1) {
-            tabbedPane.addTab("Personas de Contacto", panelContactos);
-            tabbedPane.addTab("Enfermedades", panelEnfermedades);
-            tabbedPane.addTab("Tratamientos", panelTratamientos);
-            tabbedPane.addTab("Paises visitados", panelPaises);
-        }else if(hizoDiagnostico == 2){
-        	tabbedPane.addTab("Realizar Analisis", panelAnalisis);
-        	//es aki lo q qiero hacer
+            agregarPestañasAdicionales();
+        } else if (hizoDiagnostico == 2) {
+            tabbedPane.addTab("Realizar Analisis", panelAnalisis);
+            if (resultadoAnalisis) {
+                agregarPestañasAdicionales();
+            }
         }
         
         // Actualizar la interfaz
         revalidate();
         repaint();
+    }
+
+    // Método para agregar todas las pestañas adicionales
+    private void agregarPestañasAdicionales() {
+        tabbedPane.addTab("Personas de Contacto", panelContactos);
+        tabbedPane.addTab("Enfermedades", panelEnfermedades);
+        tabbedPane.addTab("Tratamientos", panelTratamientos);
+        tabbedPane.addTab("Paises visitados", panelPaises);
     }
     private JPanel crearPanelDatosBasicos() {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -412,11 +419,10 @@ public class RegistroPaciente extends JFrame {
     
     private JPanel crearPanelAnalisis() {
         JPanel panel = new JPanel();
-        panel.setLayout(null); // Usamos layout null para posicionamiento absoluto
+        panel.setLayout(null);
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panel.setPreferredSize(new Dimension(300, 300)); 
         
-        // Configurar fuente más grande y gruesa
         Font fuenteGrande = new Font("Arial", Font.BOLD, 16);
         Font fuenteResultado = new Font("Arial", Font.BOLD, 14);
         
@@ -427,10 +433,9 @@ public class RegistroPaciente extends JFrame {
         
         JButton btnAnalizar = new JButton("REALIZAR ANÁLISIS");
         btnAnalizar.setFont(new Font("Arial", Font.BOLD, 18)); 
-        btnAnalizar.setBounds(100, 80, 300, 60); // Botón más grande
+        btnAnalizar.setBounds(100, 80, 300, 60);
         panel.add(btnAnalizar);
         
-        // Label para mostrar el resultado inicialmente vacío
         final JLabel lblResultado = new JLabel("");
         lblResultado.setFont(fuenteResultado);
         lblResultado.setBounds(50, 180, 400, 40); 
@@ -439,18 +444,18 @@ public class RegistroPaciente extends JFrame {
         
         btnAnalizar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            	resultadoAnalisis = Minsap.realizarAnalisis(); 
+                resultadoAnalisis = Minsap.realizarAnalisis(); 
                 String resultadoToString = resultadoAnalisis ? "POSITIVO" : "NEGATIVO";
                 lblResultado.setText("El resultado del análisis fue: " + resultadoToString);
-                
-                // Cambiar color según el resultado
                 lblResultado.setForeground(resultadoAnalisis ? Color.GREEN : Color.RED);
+                
+                // Llamar a actualizarPestañas después de obtener el resultado
+                actualizarPestañas();
             }
         });
         
         return panel;
-    }
-    
+    }  
     private class GuardarListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
