@@ -1,1 +1,2 @@
-2025-06-22 20:50:53|false|Juan|12345678910|12|masculino|calle 1ra|Kevin|Sxualitis (Herbert) - Transmisi�n: Sexual - Incubaci�n: 2 d�as|Sopita
+2023-11-19 11:30:15|Carlos Sánchez|5506070809|31|Masculino|Calle 202, Ciudad|Ana Torres|Chikungunya|CHIKV|Vectorial|3|activo|Reposo,Antiinflamatorios|República Dominicana
+2023-11-20 13:25:40|Juana Fernández|6607080910|27|Femenino|Avenida 303, Ciudad|Pedro Jiménez|Fiebre Amarilla|Flavivirus|Vectorial|6|activo|Reposo,Hidratación|Perú,Ecuador

@@ -106,8 +106,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
 		mntmAadirEnfermedad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RegistroEnfermedadesFrame addEnfermedadFrame = new RegistroEnfermedadesFrame();
-				addEnfermedadFrame.setVisible(true);
+				
 			}
 		});
 		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
