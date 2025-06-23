@@ -163,9 +163,16 @@ public class Principal extends JFrame {
 		mntmEnfermedadesConMayor.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermedadesConMayor);
 		
-		JMenuItem mntmCantidadDeInfectados = new JMenuItem("Cantidad de infectados en el exterior por fecha");
-		mntmCantidadDeInfectados.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnReportes.add(mntmCantidadDeInfectados);
+		JMenuItem mntmCantidadDeEnfermosNacionales = new JMenuItem("Cantidad de enfermos en territorio nacional");
+		mntmCantidadDeEnfermosNacionales.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FiltrarEnfermosNacionales filtrarEnfermosNacionales = FiltrarEnfermosNacionales.getInstance();
+				filtrarEnfermosNacionales.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				filtrarEnfermosNacionales.setVisible(true);
+			}
+		});
+		mntmCantidadDeEnfermosNacionales.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
+		mnReportes.add(mntmCantidadDeEnfermosNacionales);
 		
 		JMenuItem mntmPorcentajeDePersonas = new JMenuItem("Porcentaje de personas con x enfermedad");
 		mntmPorcentajeDePersonas.setFont(new Font("Bahnschrift", Font.PLAIN, 20));

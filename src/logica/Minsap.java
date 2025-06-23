@@ -242,5 +242,21 @@ public class Minsap {
     		return filtrados;
     	}
     	
+    	public ArrayList<Paciente> filtroEnfermoNacional(String enfermedadFiltrar) {
+    	    ArrayList<Paciente> filtrados = new ArrayList<Paciente>();
+    	    
+    	    for (Paciente paciente : pacientes) {
+    	        if (paciente instanceof EnfermoNacional) {
+    	            EnfermoNacional nacional = (EnfermoNacional) paciente;
+    	            if (nacional.getEnfermedades().equals(enfermedadFiltrar)) {
+    	                filtrados.add(nacional);
+    	            }
+    	        }
+    	    }
+
+    	    return filtrados;
+    	}
+
+    	
 }
 
