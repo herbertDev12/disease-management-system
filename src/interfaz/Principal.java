@@ -106,8 +106,7 @@ public class Principal extends JFrame {
 		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
 		mntmAadirEnfermedad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RegistroEnfermedadesFrame addEnfermedadFrame = new RegistroEnfermedadesFrame();
-				addEnfermedadFrame.setVisible(true);
+				
 			}
 		});
 		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
@@ -145,9 +144,11 @@ public class Principal extends JFrame {
 		JMenuItem mntmEnfermosEnEl = new JMenuItem("Enfermos en el extranjero dada una enfermedad");
 		mntmEnfermosEnEl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				/*
 				FiltrarEnfermosEnExtranjero filtrarEnfermosEnExtranjero = FiltrarEnfermosEnExtranjero.getInstance();;
 				filtrarEnfermosEnExtranjero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				filtrarEnfermosEnExtranjero.setVisible(true);
+				*/
 			}
 		});
 		mntmEnfermosEnEl.setFont(new Font("Bahnschrift", Font.PLAIN, 20));

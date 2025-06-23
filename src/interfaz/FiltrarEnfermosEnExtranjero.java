@@ -1,4 +1,5 @@
 package interfaz;
+/*
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -25,22 +26,24 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FiltrarEnfermosEnExtranjero frame = new FiltrarEnfermosEnExtranjero();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					FiltrarEnfermosEnExtranjero frame = new FiltrarEnfermosEnExtranjero();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
+/*
 	private FiltrarEnfermosEnExtranjero() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
@@ -58,7 +61,7 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String seleccion = (String) comboBox.getSelectedItem();
-				ArrayList<Paciente> pacientes = minsap.filtroEnfermosEnExtrangero(seleccion);
+				ArrayList<Paciente> pacientes = minsap.filtroEnfermosEnExtranjero(seleccion);
 
 				ArrayList<String> descripciones = new ArrayList<String>();
 
@@ -110,5 +113,6 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 		}
 		return instancia;
 	}
+	
 }
-
+*/

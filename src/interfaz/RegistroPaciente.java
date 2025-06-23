@@ -27,13 +27,17 @@ import javax.swing.event.DocumentListener;
 
 
 public class RegistroPaciente extends JFrame {
-    private static final String ARCHIVO_DATOS = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt";
-    private static final String DELIMITADOR = "|";
+	private static final String ARCHIVO_ENFERMO_EN_EXTRANJERO = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt";
+	private static final String ARCHIVO_ENFERMO_NACIONAL = "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt";
+	private static final String ARCHIVO_PACIENTE_NOENFERMO = "C:\\herbert\\disease-management-system\\src\\data\\pacientesNoEnfermos.txt";
+	private static final String ARCHIVO_ENFERMEDADES = "C:\\herbert\\disease-management-system\\src\\data\\enfermedades.txt";
+	private static final String DELIMITADOR = "|";
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private boolean resultadoAnalisis = false;
     private int hizoDiagnostico;
     private boolean analisisRealizado = false;
     private JButton btnAnalizar; 
+    private boolean isEnfermoEnExterior = false;
     
  // Paneles para pestañas
     private JPanel panelContactos;
@@ -400,7 +404,7 @@ public class RegistroPaciente extends JFrame {
                     
                     // Crear representación de la enfermedad
                     String enfermedad = String.format(
-                        "%s (%s) - Transmisión: %s - Incubación: %d días - Estado: %s",
+                        "%s|%s|%s|%d|%s",
                         nombreComun,
                         txtNombreCientifico.getText().trim(),
                         viaTransmision,
@@ -585,6 +589,7 @@ public class RegistroPaciente extends JFrame {
                 String seleccion = (String) comboEnfermoExterior.getSelectedItem();
                 if (seleccion != null) {
                     if (seleccion.equals("Sí")) {
+                    	isEnfermoEnExterior = true;
                         // Habilitar componentes para agregar países
                         panelPaisesContent.setEnabled(true);
                         scrollPaises.setEnabled(true);
@@ -592,6 +597,7 @@ public class RegistroPaciente extends JFrame {
                         btnAgregarPais.setEnabled(true);
                         btnEliminarPais.setEnabled(true);
                     } else if (seleccion.equals("No")) {
+                    	isEnfermoEnExterior = false;
                         // Eliminar la pestaña de países visitados
                         int index = tabbedPane.indexOfComponent(mainPanel);
                         if (index != -1) {
@@ -661,7 +667,7 @@ public class RegistroPaciente extends JFrame {
     private class GuardarListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-                // Obtener valores de los campos básicos
+                // Obtener valores básicos comunes a todos los tipos de pacientes
                 String nombre = Validacion.validarNombre(txtNombre, "Nombre");
                 String id = Validacion.validarIdPersona(txtId, "Id");
                 int edad = Validacion.validarEdad(txtEdad, "Edad");
@@ -689,28 +695,35 @@ public class RegistroPaciente extends JFrame {
                     tratamientos.add(modelTratamientos.getElementAt(i));
                 }
                 
-                // Validar al menos una enfermedad
-                if (enfermedades.isEmpty()) {
-                    throw new IllegalArgumentException("Debe registrar al menos una enfermedad.");
+                // Guardar enfermedades en archivo de enfermedades
+                guardarEnfermedadesEnArchivo(enfermedades);
+                
+                // Determinar el tipo de paciente y guardar en el archivo correspondiente
+                if (!resultadoAnalisis && (hizoDiagnostico == 0 || txtDiagnostico.getText().equals("No"))) {
+                    // Paciente sin enfermedad
+                    guardarPacienteNoEnfermo(nombre, id, edad, sexo, direccion);
+                } else if (resultadoAnalisis || hizoDiagnostico == 1) {
+                    // Paciente enfermo
+                    if (isEnfermoEnExterior) {
+                        // Paciente enfermo en extranjero
+                        guardarPacienteEnfermoExtranjero(
+                            nombre, id, edad, sexo, direccion, 
+                            contactos, enfermedades, tratamientos
+                        );
+                    } else {
+                        // Paciente enfermo nacional
+                        guardarPacienteEnfermoNacional(
+                            nombre, id, edad, sexo, direccion, 
+                            contactos, enfermedades, tratamientos
+                        );
+                    }
+                } else {
+                    throw new IllegalArgumentException("Estado de diagnóstico no válido");
                 }
                 
-                // Crear línea para guardar en el archivo
-                String registro = String.join(DELIMITADOR,
-                        LocalDateTime.now().format(FORMATO_FECHA),                       
-                        nombre,
-                        id,
-                        String.valueOf(edad),
-                        sexo,
-                        direccion,
-                        String.join(",", contactos),
-                        String.join(",", enfermedades),
-                        String.join(",", tratamientos)
-                );
-               
-                guardarEnArchivo(registro);
-               
+                // Mensaje de éxito
                 JOptionPane.showMessageDialog(RegistroPaciente.this,
-                    "Paciente registrado exitosamente en " + ARCHIVO_DATOS,
+                    "Paciente registrado exitosamente",
                     "Registro Exitoso",
                     JOptionPane.INFORMATION_MESSAGE);
                 
@@ -723,7 +736,11 @@ public class RegistroPaciente extends JFrame {
             } catch (IOException ex) {
                 mostrarError("Error al guardar en archivo: " + ex.getMessage());
             }
+        
         }
+        
+	        
+        
         
         private void limpiarCampos() {
             txtNombre.setText("");
@@ -749,8 +766,75 @@ public class RegistroPaciente extends JFrame {
             }
         }
         
-        private void guardarEnArchivo(String registro) throws IOException {
-            try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(ARCHIVO_DATOS, true)))) {
+        private void guardarPacienteNoEnfermo(String nombre, String id, int edad, String sexo, String direccion) throws IOException {
+        	String registro = String.join(DELIMITADOR,
+        			LocalDateTime.now().format(FORMATO_FECHA),
+        			nombre,
+        			id,
+        			String.valueOf(edad),
+        			sexo,
+        			direccion
+        			);
+        	guardarEnArchivo(ARCHIVO_PACIENTE_NOENFERMO, registro);
+        }
+        
+        private void guardarPacienteEnfermoNacional(String nombre, String id, int edad, String sexo, String direccion,List<String> contactos, List<String> enfermedades,List<String> tratamientos) throws IOException {
+        	// Validar al menos una enfermedad
+        	if (enfermedades.isEmpty()) {
+        		throw new IllegalArgumentException("Debe registrar al menos una enfermedad.");
+        	}
+
+        	String registro = String.join(DELIMITADOR,
+        			LocalDateTime.now().format(FORMATO_FECHA),
+        			nombre,
+        			id,
+        			String.valueOf(edad),
+        			sexo,
+        			direccion,
+        			String.join(",", contactos),
+        			String.join(",", enfermedades),
+        			String.join(",", tratamientos)
+        			);
+        	guardarEnArchivo(ARCHIVO_ENFERMO_NACIONAL, registro);
+        }
+        
+        private void guardarPacienteEnfermoExtranjero(String nombre, String id, int edad, String sexo, String direccion,List<String> contactos, List<String> enfermedades,List<String> tratamientos) throws IOException {
+        	// Validar al menos una enfermedad
+        	if (enfermedades.isEmpty()) {
+        		throw new IllegalArgumentException("Debe registrar al menos una enfermedad.");
+        	}
+
+        	// Obtener lista de países
+        	List<String> paises = new ArrayList<>();
+        	for (int i = 0; i < modelPaises.size(); i++) {
+        		paises.add(modelPaises.getElementAt(i));
+        	}
+
+        	String registro = String.join(DELIMITADOR,
+        			LocalDateTime.now().format(FORMATO_FECHA),
+        			nombre,
+        			id,
+        			String.valueOf(edad),
+        			sexo,
+        			direccion,
+        			String.join(",", contactos),
+        			String.join(",", enfermedades),
+        			String.join(",", tratamientos),
+        			String.join(",", paises)
+        			);
+        	guardarEnArchivo(ARCHIVO_ENFERMO_EN_EXTRANJERO, registro);
+        }
+        
+        private void guardarEnfermedadesEnArchivo(List<String> enfermedades) throws IOException {
+            for (String enfermedad : enfermedades) {
+                try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(ARCHIVO_ENFERMEDADES, true)))) {
+                    out.println(enfermedad);
+                }
+            }
+        }
+        
+        private void guardarEnArchivo(String archivo, String registro) throws IOException {
+            try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(archivo, true)))) {
                 out.println(registro);
             }
         }

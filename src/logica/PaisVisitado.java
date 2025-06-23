@@ -6,9 +6,8 @@ public class PaisVisitado {
 	private String nombre;
 	private LocalDateTime tiempoEstancia;
 	
-	public PaisVisitado(String nombre, LocalDateTime tiempoEstancia) {
+	public PaisVisitado(String nombre) {
 		 setNombre(nombre);
-		 setTiempoEstancia(tiempoEstancia);
 	}
 
 	public String getNombre() {

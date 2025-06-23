@@ -10,7 +10,7 @@ public class Enfermedad implements Codificador{
 	private String nombreComun;
 	private String nombreCientifico;
 	private ArrayList<String> viasTransmision;
-	private LocalDateTime periodoIncubacion;
+	private int periodoIncubacion;
 	private int cantidadPacientesHombres;
 	private int cantidadPacientesMujeres;
 	private HashMap<String, Integer> rangoEdades;
@@ -18,7 +18,7 @@ public class Enfermedad implements Codificador{
 	private int muertos;
 	private int activos;
 	
-	public Enfermedad(String nombreComun, String nombreCientifico,ArrayList<String> viasTransmision, LocalDateTime periodoIncubacion,
+	public Enfermedad(String nombreComun, String nombreCientifico,ArrayList<String> viasTransmision, int periodoIncubacion,
 			int cantidadPacientesHombres, int cantidadPacientesMujeres, int curados, int muertos,int activos) {
 		
 		setNombreComun(nombreComun);
@@ -32,7 +32,6 @@ public class Enfermedad implements Codificador{
 		setActivos(activos); 
 	}
 
-	
 	public String getNombreComun() {
 		return nombreComun;
 	}
@@ -57,11 +56,11 @@ public class Enfermedad implements Codificador{
 		this.viasTransmision = viasTransmision;
 	}
 
-	public LocalDateTime getPeriodoIncubacion() {
+	public int getPeriodoIncubacion() {
 		return periodoIncubacion;
 	}
 
-	public void setPeriodoIncubacion(LocalDateTime periodoIncubacion) {
+	public void setPeriodoIncubacion(int periodoIncubacion) {
 		this.periodoIncubacion = periodoIncubacion;
 	}
 
