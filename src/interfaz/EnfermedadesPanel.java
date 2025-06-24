@@ -120,6 +120,11 @@ public class EnfermedadesPanel extends JPanel {
         ArrayList<Enfermedad> enfermedades = minsap.getAllEnfermedades();
         
         for (Enfermedad enfermedad : enfermedades) {
+            // Asegurar que los mapas estén inicializados
+            if (enfermedad.getRangoEdades() == null) {
+                enfermedad.setRangoEdades(new HashMap<String,Integer>());
+            }
+            
             Object[] fila = {
                 enfermedad.getNombreComun(),
                 enfermedad.getNombreCientifico(),

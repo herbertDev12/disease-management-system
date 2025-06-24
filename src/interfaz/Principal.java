@@ -109,6 +109,7 @@ public class Principal extends JFrame {
 		    public void actionPerformed(ActionEvent arg0) {
 		        Minsap minsap = new Minsap();
 		        minsap.cargarPacientes("C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt");
+		        minsap.cargarPacientes("C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt");
 		        
 		        // Crear ventana para mostrar el panel
 		        JFrame frameEnfermedades = new JFrame("Listado de Enfermedades");

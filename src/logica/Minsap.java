@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import utils.ExtractorDatos;
@@ -41,37 +42,49 @@ public class Minsap {
         }
     }
     
-    // Método auxiliar para agregar enfermedades sin duplicados
+    // Método para cargar todos los pacientes
+    public void cargarTodosLosPacientes(String rutaNacionales, String rutaExtranjeros) {
+        cargarPacientes(rutaNacionales);   // Carga pacientes nacionales
+        cargarPacientes(rutaExtranjeros);   // Carga pacientes extranjeros
+    }
+    
+    //Método para agregar enfermedades si no existen
     private void agregarEnfermedadSiNoExiste(Enfermedad nuevaEnfermedad) {
-        boolean existe = false;
         for (Enfermedad enfermedad : enfermedades) {
-            if (enfermedad.getNombreComun().equals(nuevaEnfermedad.getNombreComun())) {
-                // Actualizar estadísticas de la enfermedad existente
+            if (enfermedad.getNombreComun().equalsIgnoreCase(nuevaEnfermedad.getNombreComun())) {
+                // Inicializar si es necesario
+                if (enfermedad.getRangoEdades() == null) {
+                    enfermedad.setRangoEdades(new HashMap<String,Integer>());
+                }
+                if (nuevaEnfermedad.getRangoEdades() == null) {
+                    nuevaEnfermedad.setRangoEdades(new HashMap<String,Integer>());
+                }
+                
                 actualizarEstadisticasEnfermedad(enfermedad, nuevaEnfermedad);
-                existe = true;
-                break;
+                return;
             }
         }
-        if (!existe) {
-            enfermedades.add(nuevaEnfermedad);
+        // Si no existe, agregar la nueva enfermedad
+        if (nuevaEnfermedad.getRangoEdades() == null) {
+            nuevaEnfermedad.setRangoEdades(new HashMap<String,Integer>());
         }
+        enfermedades.add(nuevaEnfermedad);
     }
+
     
     // Método para actualizar estadísticas de una enfermedad existente
     private void actualizarEstadisticasEnfermedad(Enfermedad existente, Enfermedad nueva) {
-    	
-    	if (existente == null || nueva == null) {
-            throw new IllegalArgumentException("Enfermedad no puede ser nula");
-        }
+        if (existente == null || nueva == null) return;
         
         // Inicializar si es necesario
         if (existente.getRangoEdades() == null) {
-        	existente.setRangoEdades(new HashMap<String, Integer>());
+            existente.setRangoEdades(new HashMap<String,Integer>());
         }
         if (nueva.getRangoEdades() == null) {
-            return; // o inicializar según necesidad
+            nueva.setRangoEdades(new HashMap<String,Integer>());
         }
         
+        // Actualizar estadísticas básicas
         existente.setCantidadPacientesHombres(existente.getCantidadPacientesHombres() + nueva.getCantidadPacientesHombres());
         existente.setCantidadPacientesMujeres(existente.getCantidadPacientesMujeres() + nueva.getCantidadPacientesMujeres());
         existente.setCurados(existente.getCurados() + nueva.getCurados());
@@ -80,10 +93,9 @@ public class Minsap {
         
         // Actualizar rangos de edad
         HashMap<String, Integer> rangosExistentes = existente.getRangoEdades();
-        HashMap<String, Integer> rangosNuevos = nueva.getRangoEdades();
-        
-        for (String rango : rangosNuevos.keySet()) {
-            int cantidad = rangosNuevos.get(rango);
+        for (Map.Entry<String, Integer> entry : nueva.getRangoEdades().entrySet()) {
+            String rango = entry.getKey();
+            int cantidad = entry.getValue();
             rangosExistentes.put(rango, rangosExistentes.getOrDefault(rango, 0) + cantidad);
         }
     }

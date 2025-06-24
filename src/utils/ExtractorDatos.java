@@ -23,8 +23,13 @@ public class ExtractorDatos {
         List<String> lineas = Files.readAllLines(Paths.get(rutaArchivo));
         List<Object> pacientes = new ArrayList<>();
 
-        for (String linea : lineas) {
-            pacientes.add(parsearLinea(linea));
+        for (int i = 0; i < lineas.size(); i++) {
+            try {
+                pacientes.add(parsearLinea(lineas.get(i)));
+            } catch (Exception e) {
+                System.err.println("Error en línea " + (i+1) + ": " + lineas.get(i));
+                e.printStackTrace();
+            }
         }
 
         return pacientes;
@@ -33,9 +38,10 @@ public class ExtractorDatos {
     private Object parsearLinea(String linea) {
         String[] campos = linea.split("\\|", -1);
         
-        if (campos.length == 15) {
+        // Actualizar para manejar 14 campos (extranjeros) y 13 campos (nacionales)
+        if (campos.length == 14) { // Paciente extranjero con 14 campos
             return parsearPacienteExtranjero(campos);
-        } else if (campos.length == 13) {
+        } else if (campos.length == 13) { // Paciente nacional
             return parsearPacienteNacional(campos);
         } else {
             throw new IllegalArgumentException("Formato inválido. Campos encontrados: " + campos.length + " Línea: " + linea);
@@ -43,6 +49,7 @@ public class ExtractorDatos {
     }
 
     private EnfermoEnExtranjero parsearPacienteExtranjero(String[] campos) {
+        
         LocalDateTime fechaDiagnosticado = LocalDateTime.parse(campos[0], FORMATO_FECHA);
         String nombre = campos[1];
         String id = campos[2];
@@ -63,8 +70,10 @@ public class ExtractorDatos {
         ArrayList<Enfermedad> enfermedades = new ArrayList<>();
         enfermedades.add(enfermedad);
 
+        // Tratamientos ahora está en el índice 12
         ArrayList<String> tratamientos = new ArrayList<>(Arrays.asList(campos[12].split(",")));
 
+        // Países visitados ahora está en el índice 13
         ArrayList<PaisVisitado> paises = new ArrayList<>();
         String[] paisesArray = campos[13].split(",");
         
@@ -82,6 +91,7 @@ public class ExtractorDatos {
     }
 
     private EnfermoNacional parsearPacienteNacional(String[] campos) {
+        // Campos para paciente nacional (13 elementos) permanecen iguales
         LocalDateTime fechaDiagnosticado = LocalDateTime.parse(campos[0], FORMATO_FECHA);
         String nombre = campos[1];
         String id = campos[2];
@@ -102,6 +112,7 @@ public class ExtractorDatos {
         ArrayList<Enfermedad> enfermedades = new ArrayList<>();
         enfermedades.add(enfermedad);
 
+        // Tratamientos en índice 12
         ArrayList<String> tratamientos = new ArrayList<>(Arrays.asList(campos[12].split(",")));
 
         return new EnfermoNacional(
@@ -113,8 +124,12 @@ public class ExtractorDatos {
     private Enfermedad parsearEnfermedad(String nombreComun, String nombreCientifico, 
                                          String viaTransmision, String periodoIncubacionStr, 
                                          String estadoPaciente) {
-        // Convertir a int
-        int periodoIncubacion = Integer.parseInt(periodoIncubacionStr);
+    	
+    	// En parsearEnfermedad
+    	if (periodoIncubacionStr == null || periodoIncubacionStr.isEmpty()) {
+    	    periodoIncubacionStr = "0"; // Valor por defecto
+    	}
+    	int periodoIncubacion = Integer.parseInt(periodoIncubacionStr);
         
         ArrayList<String> vias = new ArrayList<>();
         vias.add(viaTransmision);
