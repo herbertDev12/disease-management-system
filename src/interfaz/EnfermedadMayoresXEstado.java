@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import logica.Minsap;
 import logica.Enfermedad;
+import java.awt.SystemColor;
 
 public class EnfermedadMayoresXEstado extends JFrame {
 	private static EnfermedadMayoresXEstado instancia;
@@ -43,6 +44,7 @@ public class EnfermedadMayoresXEstado extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

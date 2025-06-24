@@ -174,11 +174,9 @@ public class Principal extends JFrame {
 		JMenuItem mntmEnfermosEnEl = new JMenuItem("Enfermos en el extranjero dada una enfermedad");
 		mntmEnfermosEnEl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
 				FiltrarEnfermosEnExtranjero filtrarEnfermosEnExtranjero = FiltrarEnfermosEnExtranjero.getInstance();;
 				filtrarEnfermosEnExtranjero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				filtrarEnfermosEnExtranjero.setVisible(true);
-				*/
 			}
 		});
 		mntmEnfermosEnEl.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
