@@ -59,6 +59,19 @@ public class Minsap {
     
     // Método para actualizar estadísticas de una enfermedad existente
     private void actualizarEstadisticasEnfermedad(Enfermedad existente, Enfermedad nueva) {
+    	
+    	if (existente == null || nueva == null) {
+            throw new IllegalArgumentException("Enfermedad no puede ser nula");
+        }
+        
+        // Inicializar si es necesario
+        if (existente.getRangoEdades() == null) {
+        	existente.setRangoEdades(new HashMap<String, Integer>());
+        }
+        if (nueva.getRangoEdades() == null) {
+            return; // o inicializar según necesidad
+        }
+        
         existente.setCantidadPacientesHombres(existente.getCantidadPacientesHombres() + nueva.getCantidadPacientesHombres());
         existente.setCantidadPacientesMujeres(existente.getCantidadPacientesMujeres() + nueva.getCantidadPacientesMujeres());
         existente.setCurados(existente.getCurados() + nueva.getCurados());

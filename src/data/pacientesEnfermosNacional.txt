@@ -1,3 +1,31 @@
-
 2023-11-17 09:45:33|Pedro Rodríguez|3304050607|42|Masculino|Carrera 789, Ciudad|Laura Díaz|COVID-19|SARS-CoV-2|Aérea|5|activo|Aislamiento,Paracetamol
-2023-11-18 16:20:10|María López|4405060708|50|Femenino|Diagonal 101, Ciudad|Juan Martínez|Zika|Zika virus|Vectorial|4|activo|Reposo,Antihistamínicos
+2023-11-17 09:45:33|Pedro Rodríguez|3304050607|42|Masculino|Carrera 789, Ciudad|Laura Díaz|COVID-19|SARS-CoV-2|Aérea|5|activo|Aislamiento,Paracetamol
+2023-11-16 14:30:22|María González|3405060708|35|Femenino|Calle 123, Pueblo|Carlos López|Dengue|DENV-2|Vectorial|7|curado|Reposo,Hidratación
+2023-11-15 10:15:10|Juan Pérez|3506070809|28|Masculino|Avenida 456, Villa|Ana Martínez|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
+2023-11-14 16:45:18|Luisa Fernández|3607080910|50|Femenino|Diagonal 789, Ciudad|Pedro Sánchez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento
+2023-11-13 08:20:45|Carlos Jiménez|3708091011|19|Masculino|Carrera 321, Pueblo|Marta Ruiz|Dengue|DENV-1|Vectorial|7|activo|Paracetamol
+2023-11-12 11:30:33|Ana López|3809101112|45|Femenino|Calle 654, Villa|Jorge Díaz|Chikungunya|CHIKV|Vectorial|3|curado|Reposo
+2023-11-11 13:15:27|Jorge Martínez|3910111213|32|Masculino|Avenida 987, Ciudad|Luisa Pérez|COVID-19|SARS-CoV-2|Aérea|5|muerto|UCI
+2023-11-10 09:40:19|Sofía Ramírez|4011121314|27|Femenino|Carrera 123, Pueblo|Carlos Gómez|Dengue|DENV-3|Vectorial|7|activo|Hidratación
+2023-11-09 15:25:14|Miguel Díaz|4112131415|60|Masculino|Calle 456, Villa|Ana Rodríguez|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
+2023-11-08 10:10:08|Elena Ruiz|4213141516|22|Femenino|Avenida 789, Ciudad|Juan López|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento
+2023-11-07 14:50:42|David Sánchez|4314151617|38|Masculino|Diagonal 321, Pueblo|María Martínez|Dengue|DENV-4|Vectorial|7|curado|Reposo
+2023-11-06 08:35:37|Laura Gómez|4415161718|29|Femenino|Carrera 654, Villa|Pedro Fernández|Chikungunya|CHIKV|Vectorial|3|muerto|UCI
+2023-11-05 12:20:31|Pablo Torres|4516171819|55|Masculino|Calle 987, Ciudad|Sofía Jiménez|COVID-19|SARS-CoV-2|Aérea|5|activo|Remdesivir
+2023-11-04 16:15:24|Carmen Núñez|4617181920|41|Femenino|Avenida 123, Pueblo|Miguel Ramírez|Dengue|DENV-2|Vectorial|7|curado|Hidratación
+2023-11-03 09:05:17|Fernando Castro|4718192021|33|Masculino|Diagonal 456, Villa|Elena Díaz|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
+2023-11-02 13:55:12|Isabel Mendoza|4819202122|48|Femenino|Carrera 789, Ciudad|Jorge Sánchez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento
+2023-11-01 07:40:06|Ricardo Herrera|4920212223|24|Masculino|Calle 321, Pueblo|Luisa López|Dengue|DENV-1|Vectorial|7|activo|Paracetamol
+2023-10-31 11:30:59|Patricia Silva|5021222324|57|Femenino|Avenida 654, Villa|Carlos Martínez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo
+2023-10-30 15:25:53|Roberto Vargas|5122232425|30|Masculino|Diagonal 987, Ciudad|Ana González|COVID-19|SARS-CoV-2|Aérea|5|activo|Baricitinib
+2023-10-29 08:15:47|Natalia Castro|5223242526|43|Femenino|Carrera 123, Pueblo|Pedro Jiménez|Dengue|DENV-3|Vectorial|7|curado|Hidratación
+2023-10-28 12:05:41|Héctor Rojas|5324252627|26|Masculino|Calle 456, Villa|María Sánchez|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
+2023-10-27 16:55:35|Adriana Mora|5425262728|39|Femenino|Avenida 789, Ciudad|Juan Díaz|COVID-19|SARS-CoV-2|Aérea|5|muerto|UCI
+2023-10-26 09:45:29|Oscar Duarte|5526272829|52|Masculino|Diagonal 321, Pueblo|Laura Martínez|Dengue|DENV-4|Vectorial|7|activo|Paracetamol
+2023-10-25 13:35:23|Teresa Guzmán|5627282930|23|Femenino|Carrera 654, Villa|Carlos López|Chikungunya|CHIKV|Vectorial|3|curado|Reposo
+2023-10-24 17:25:17|Alberto Soto|5728293031|47|Masculino|Calle 987, Ciudad|Sofía Ramírez|COVID-19|SARS-CoV-2|Aérea|5|activo|Corticoides
+2023-10-23 10:15:11|Claudia Ríos|5829303132|31|Femenino|Avenida 123, Pueblo|Miguel Torres|Dengue|DENV-2|Vectorial|7|curado|Hidratación
+2023-10-22 14:05:05|Francisco Méndez|5920313233|44|Masculino|Diagonal 456, Villa|Elena Castro|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
+2023-10-21 07:55:59|Verónica Paredes|6021323334|25|Femenino|Carrera 789, Ciudad|Jorge Herrera|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento
+2023-10-20 11:45:53|Javier Cordero|6122333435|58|Masculino|Calle 321, Pueblo|Luisa Vargas|Dengue|DENV-1|Vectorial|7|activo|Paracetamol
+2023-10-19 15:35:47|Diana Espinoza|6223343536|36|Femenino|Avenida 654, Villa|Roberto Núñez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo

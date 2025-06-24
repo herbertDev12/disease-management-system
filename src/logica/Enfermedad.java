@@ -30,6 +30,7 @@ public class Enfermedad implements Codificador{
 		setCurados(curados);
 		setMuertos(muertos);
 		setActivos(activos); 
+		this.rangoEdades = new HashMap<>();
 	}
 
 	public String getNombreComun() {

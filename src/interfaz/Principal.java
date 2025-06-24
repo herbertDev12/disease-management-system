@@ -26,6 +26,8 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import logica.Minsap;
+
 public class Principal extends JFrame {
 
 	private JPanel fotoFondo;
@@ -102,20 +104,29 @@ public class Principal extends JFrame {
 		mnGestionarEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.add(mnGestionarEnfermedades);
 		
-		//Event Handler para llamar a RegistroEnfermedadesFrame
-		JMenuItem mntmAadirEnfermedad = new JMenuItem("A\u00F1adir enfermedad");
-		mntmAadirEnfermedad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		mntmAadirEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarEnfermedades.add(mntmAadirEnfermedad);
-		
 		JMenuItem mntmListaDeEnfermedades = new JMenuItem("Lista de enfermedades");
+		mntmListaDeEnfermedades.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+		        Minsap minsap = new Minsap();
+		        minsap.cargarPacientes("C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt");
+		        
+		        // Crear ventana para mostrar el panel
+		        JFrame frameEnfermedades = new JFrame("Listado de Enfermedades");
+		        frameEnfermedades.setSize(1400, 600);
+		        frameEnfermedades.setLocationRelativeTo(null);
+		        frameEnfermedades.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        
+		        // Crear y agregar el panel
+		        EnfermedadesPanel enfermedadesPanel = new EnfermedadesPanel(minsap);
+		        frameEnfermedades.add(enfermedadesPanel);
+		        
+		        // Mostrar la ventana
+		        frameEnfermedades.setVisible(true);
+		    }
+		});
 		mntmListaDeEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmListaDeEnfermedades);
-		
+				
 		JMenuItem mntmEliminarEnfermedad = new JMenuItem("Eliminar enfermedad");
 		mntmEliminarEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmEliminarEnfermedad);
