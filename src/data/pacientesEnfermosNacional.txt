@@ -28,4 +28,5 @@
 2023-10-22 14:05:05|Francisco Méndez|5920313233|44|Masculino|Diagonal 456, Villa|Elena Castro|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios
 2023-10-21 07:55:59|Verónica Paredes|6021323334|25|Femenino|Carrera 789, Ciudad|Jorge Herrera|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento
 2023-10-20 11:45:53|Javier Cordero|6122333435|58|Masculino|Calle 321, Pueblo|Luisa Vargas|Dengue|DENV-1|Vectorial|7|activo|Paracetamol
-2023-10-19 15:35:47|Diana Espinoza|6223343536|36|Femenino|Avenida 654, Villa|Roberto Núñez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo
+2023-10-19 15:35:47|Diana Espinoza|6223343536|36|Femenino|Avenida 654, Villa|Roberto Núñez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo2025-06-24 08:08:03|Juan|06053464266|29|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Hablar
+2025-06-24 08:11:53|Juan|12345678910|23|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Agua, reposo

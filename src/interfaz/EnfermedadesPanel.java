@@ -127,7 +127,7 @@ public class EnfermedadesPanel extends JPanel {
             
             Object[] fila = {
                 enfermedad.getNombreComun(),
-                enfermedad.getNombreCientifico(),
+                enfermedad.getCodigo(),
                 formatViasTransmision(enfermedad.getViasTransmision()),
                 enfermedad.getPeriodoIncubacion(),
                 enfermedad.getCantidadPacientesHombres(),

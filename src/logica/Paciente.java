@@ -26,7 +26,7 @@ public abstract class Paciente implements Codificador{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getId() {
+	public String getCodigo() {
 		return id;
 	}
 	public void setId(String id) {

@@ -41,7 +41,7 @@ public class Enfermedad implements Codificador{
 		this.nombreComun = nombreComun;
 	}
 
-	public String getNombreCientifico() {
+	public String getCodigo() {
 		return nombreCientifico;
 	}
 
@@ -113,11 +113,6 @@ public class Enfermedad implements Codificador{
 		this.activos = activos;
 	}
 
-
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	

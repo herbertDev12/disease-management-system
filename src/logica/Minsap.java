@@ -143,7 +143,7 @@ public class Minsap {
     // Métodos para buscar pacientes por ID
     public EnfermoNacional getEnfermoNacional(String id) {
         for (EnfermoNacional paciente : enfermadosEnCuba) {
-            if (paciente.getId().equals(id)) {
+            if (paciente.getCodigo().equals(id)) {
                 return paciente;
             }
         }
@@ -152,7 +152,7 @@ public class Minsap {
     
     public EnfermoEnExtranjero getEnfermoExtranjero(String id) {
         for (EnfermoEnExtranjero paciente : enfermadosEnExterior) {
-            if (paciente.getId().equals(id)) {
+            if (paciente.getCodigo().equals(id)) {
                 return paciente;
             }
         }
@@ -162,7 +162,7 @@ public class Minsap {
     // Métodos para actualizar pacientes
     public void actualizarEnfermoNacional(String id, EnfermoNacional pacienteActualizado) {
         for (int i = 0; i < enfermadosEnCuba.size(); i++) {
-            if (enfermadosEnCuba.get(i).getId().equals(id)) {
+            if (enfermadosEnCuba.get(i).getCodigo().equals(id)) {
                 enfermadosEnCuba.set(i, pacienteActualizado);
                 return;
             }
@@ -172,7 +172,7 @@ public class Minsap {
     
     public void actualizarEnfermoExtranjero(String id, EnfermoEnExtranjero pacienteActualizado) {
         for (int i = 0; i < enfermadosEnExterior.size(); i++) {
-            if (enfermadosEnExterior.get(i).getId().equals(id)) {
+            if (enfermadosEnExterior.get(i).getCodigo().equals(id)) {
                 enfermadosEnExterior.set(i, pacienteActualizado);
                 return;
             }
@@ -183,7 +183,7 @@ public class Minsap {
     // Métodos para eliminar pacientes
     public void deleteEnfermoNacional(String id) {
         for (int i = 0; i < enfermadosEnCuba.size(); i++) {
-            if (enfermadosEnCuba.get(i).getId().equals(id)) {
+            if (enfermadosEnCuba.get(i).getCodigo().equals(id)) {
                 enfermadosEnCuba.remove(i);
                 return;
             }
@@ -193,7 +193,7 @@ public class Minsap {
     
     public void deleteEnfermoExtranjero(String id) {
         for (int i = 0; i < enfermadosEnExterior.size(); i++) {
-            if (enfermadosEnExterior.get(i).getId().equals(id)) {
+            if (enfermadosEnExterior.get(i).getCodigo().equals(id)) {
                 enfermadosEnExterior.remove(i);
                 return;
             }
