@@ -1,5 +1,5 @@
 package interfaz;
-/*
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,6 +15,9 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import logica.*;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
 public class FiltrarEnfermosEnExtranjero extends JFrame {
 	private static FiltrarEnfermosEnExtranjero instancia;
 	private JPanel contentPane;
@@ -23,31 +26,30 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 	private JList<String> list;
 
 
-	/**
-	 * Launch the application.
-	 */
+	 //Launch the application.
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					FiltrarEnfermosEnExtranjero frame = new FiltrarEnfermosEnExtranjero();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FiltrarEnfermosEnExtranjero frame = new FiltrarEnfermosEnExtranjero();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-	/**
-	 * Create the frame.
-	 */
-/*
+
+	 // Create the frame.
+
 	private FiltrarEnfermosEnExtranjero() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setForeground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -57,41 +59,39 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 		contentPane.add(list);
 		
 		comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Arial Black", Font.BOLD, 14));
+		comboBox.setToolTipText("Enfermedades a filtrar");
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				String seleccion = (String) comboBox.getSelectedItem();
-				ArrayList<Paciente> pacientes = minsap.filtroEnfermosEnExtranjero(seleccion);
+				ArrayList<EnfermoEnExtranjero> pacientes = minsap.filtroEnfermosEnExtranjero(seleccion);
 
-				ArrayList<String> descripciones = new ArrayList<String>();
+				ArrayList<String> descripciones = new ArrayList<>();
 
-				for (Paciente p : pacientes) {
-					if (p instanceof EnfermoEnExtranjero) {
-						EnfermoEnExtranjero ext = (EnfermoEnExtranjero) p;
-						String descripcion = ext.getNombre() + " - ";
+				for (EnfermoEnExtranjero ext : pacientes) {
+				    String descripcion = ext.getNombre() + " - ";
 
-						ArrayList<PaisVisitado> paises = ext.getPaisesVisitados();
-						if (paises.isEmpty()) {
-							descripcion += "Sin países registrados";
-						} else {
-							descripcion += "Países: ";
-							int contador = 0;
-							for (PaisVisitado pais : paises) {
-								descripcion += pais.getNombre() + " (" + pais.getTiempoEstancia() + ")";
-								contador++;
-								if (contador < paises.size()) {
-									descripcion += ", ";
-								}
-							}
-						}
-						descripciones.add(descripcion);
-					}
+				    ArrayList<PaisVisitado> paises = ext.getPaisesVisitados();
+				    if (paises.isEmpty()) {
+				        descripcion += "Sin países registrados";
+				    } else {
+				        descripcion += "Países: ";
+				        int contador = 0;
+				        for (PaisVisitado pais : paises) {
+				            descripcion += pais.getNombre() + " (" + pais.getTiempoEstancia() + ")";
+				            contador++;
+				            if (contador < paises.size()) {
+				                descripcion += ", ";
+				            }
+				        }
+				    }
+				    descripciones.add(descripcion);
 				}
 
 				if (descripciones.isEmpty()) {
-					list.setListData(new String[] { "No se encontraron pacientes con esta enfermedad" });
+				    list.setListData(new String[] { "No se encontraron pacientes con esta enfermedad" });
 				} else {
-					list.setListData(descripciones.toArray(new String[descripciones.size()]));
+				    list.setListData(descripciones.toArray(new String[0]));
 				}
 
 			}
@@ -115,4 +115,4 @@ public class FiltrarEnfermosEnExtranjero extends JFrame {
 	}
 	
 }
-*/
+

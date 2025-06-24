@@ -1,2 +1,32 @@
 2023-11-19 11:30:15|Carlos Sánchez|5506070809|31|Masculino|Calle 202, Ciudad|Ana Torres|Chikungunya|CHIKV|Vectorial|3|activo|Reposo,Antiinflamatorios|República Dominicana
 2023-11-20 13:25:40|Juana Fernández|6607080910|27|Femenino|Avenida 303, Ciudad|Pedro Jiménez|Fiebre Amarilla|Flavivirus|Vectorial|6|activo|Reposo,Hidratación|Perú,Ecuador
+2023-11-19 11:30:15|Carlos Sánchez|5506070809|31|Masculino|Calle 202, Ciudad|Ana Torres|Chikungunya|CHIKV|Vectorial|3|activo|Reposo,Antiinflamatorios|República Dominicana
+2023-11-18 14:22:10|María González|5607080910|45|Femenino|Avenida 45 #12-30|Luis Méndez|Dengue|DENV-2|Vectorial|7|curado|Hidratación|México
+2023-11-17 09:15:05|Jorge Martínez|5708091011|22|Masculino|Carrera 8 #25-41|Sofía Ramírez|COVID-19|SARS-CoV-2|Aérea|5|activo|Aislamiento|España
+2023-11-16 16:10:00|Ana López|5809101112|60|Femenino|Calle 72 #10-15|Pedro Díaz|Chikungunya|CHIKV|Vectorial|3|curado|Reposo|Puerto Rico
+2023-11-15 10:05:55|David Fernández|5910111213|29|Masculino|Diagonal 15 #40-22|Laura Castro|Dengue|DENV-1|Vectorial|7|activo|Paracetamol|Colombia
+2023-11-14 13:00:50|Luisa Rodríguez|6011121314|38|Femenino|Transversal 30 #12-45|Carlos Herrera|COVID-19|SARS-CoV-2|Aérea|5|muerto|UCI|Brasil
+2023-11-13 07:55:45|Pablo Pérez|6112131415|51|Masculino|Avenida Boyacá #15-30|Marta Jiménez|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios|Venezuela
+2023-11-12 11:50:40|Carmen Ruiz|6213141516|27|Femenino|Carrera 50 #22-10|Jorge Núñez|Dengue|DENV-3|Vectorial|7|curado|Hidratación|Argentina
+2023-11-11 15:45:35|Fernando Gómez|6314151617|42|Masculino|Calle 100 #11-25|Elena Torres|COVID-19|SARS-CoV-2|Aérea|5|activo|Remdesivir|Estados Unidos
+2023-11-10 09:40:30|Isabel Díaz|6415161718|33|Femenino|Avenida Las Américas|Ricardo Sánchez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo|Perú
+2023-11-09 12:35:25|Miguel Castro|6516171819|19|Masculino|Carrera 7 #40-50|Patricia López|Dengue|DENV-4|Vectorial|7|muerto|Transfusión|Ecuador
+2023-11-08 16:30:20|Elena Herrera|6617181920|47|Femenino|Diagonal 25 #35-12|Juan Martínez|COVID-19|SARS-CoV-2|Aérea|5|activo|Baricitinib|Chile
+2023-11-07 10:25:15|Ricardo Jiménez|6718192021|25|Masculino|Calle 85 #45-60|Ana González|Chikungunya|CHIKV|Vectorial|3|curado|Antiinflamatorios|Panamá
+2023-11-06 13:20:10|Patricia Sánchez|6819202122|54|Femenino|Avenida Caracas #22-33|Luis Rodríguez|Dengue|DENV-2|Vectorial|7|activo|Hidratación|Costa Rica
+2023-11-05 17:15:05|Juan Ramírez|6920212223|36|Masculino|Carrera 13 #10-25|Sofía Pérez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Honduras
+2023-11-04 11:10:00|Laura Torres|7021222324|41|Femenino|Transversal 5 #30-41|Pedro Fernández|Chikungunya|CHIKV|Vectorial|3|activo|Reposo|Guatemala
+2023-11-03 14:05:55|Carlos Mendoza|7122232425|23|Masculino|Calle 26 #12-30|María Gómez|Dengue|DENV-1|Vectorial|7|curado|Paracetamol|El Salvador
+2023-11-02 08:00:50|Ana Vargas|7223242526|58|Femenino|Avenida 68 #50-22|Jorge Díaz|COVID-19|SARS-CoV-2|Aérea|5|muerto|Ventilador|Nicaragua
+2023-11-01 11:55:45|Javier Rojas|7324252627|32|Masculino|Carrera 19 #33-10|Luisa Castro|Chikungunya|CHIKV|Vectorial|3|curado|Reposo|Paraguay
+2023-10-31 15:50:40|Sofía Núñez|7425262728|44|Femenino|Diagonal 17 #22-15|Carlos Herrera|Dengue|DENV-3|Vectorial|7|activo|Hidratación|Uruguay
+2023-10-30 09:45:35|Pedro Guzmán|7526272829|28|Masculino|Calle 72 #11-50|Elena Martínez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Bolivia
+2023-10-29 13:40:30|Marta Ortega|7627282930|50|Femenino|Avenida 30 #45-12|Ricardo López|Chikungunya|CHIKV|Vectorial|3|activo|Antiinflamatorios|República Dominicana
+2023-10-28 17:35:25|Luis Medina|7728293031|35|Masculino|Carrera 5 #15-33|Patricia Sánchez|Dengue|DENV-4|Vectorial|7|curado|Hidratación|México
+2023-10-27 11:30:20|Elena Castro|7829303132|39|Femenino|Transversal 8 #20-10|Juan Ramírez|COVID-19|SARS-CoV-2|Aérea|5|activo|Remdesivir|España
+2023-10-26 15:25:15|Ricardo Herrera|7930313233|21|Masculino|Calle 90 #33-45|Ana Torres|Chikungunya|CHIKV|Vectorial|3|curado|Reposo|Puerto Rico
+2023-10-25 09:20:10|Patricia Díaz|8031323334|53|Femenino|Avenida 19 #12-60|Luis Méndez|Dengue|DENV-2|Vectorial|7|muerto|Transfusión|Colombia
+2023-10-24 13:15:05|Juan Jiménez|8132333435|26|Masculino|Carrera 11 #25-30|Sofía Ramírez|COVID-19|SARS-CoV-2|Aérea|5|activo|Corticoides|Brasil
+2023-10-23 17:10:00|Laura Martínez|8233343536|48|Femenino|Diagonal 23 #10-22|Pedro Díaz|Chikungunya|CHIKV|Vectorial|3|curado|Antiinflamatorios|Venezuela
+2023-10-22 11:05:55|Carlos Ríos|8334353637|30|Masculino|Calle 63 #40-15|María Gómez|Dengue|DENV-1|Vectorial|7|activo|Hidratación|Argentina
+2023-10-21 15:00:50|Ana Herrera|8435363738|42|Femenino|Avenida 26 #33-20|Jorge Núñez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Estados Unidos

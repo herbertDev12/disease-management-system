@@ -269,30 +269,24 @@ public class Minsap {
 
   	    return enfermedadMayoresActivos;
   	}
-  	/*
-  	public ArrayList<Paciente> filtroEnfermosEnExtrangero(String enfermedadFiltrar){
-  		ArrayList<Paciente> filtrados = new ArrayList<>();
-  		
-  		for(Paciente paciente :){
-  			if(paciente instanceof EnfermoEnExtranjero){
-  				if(((EnfermoEnExtranjero) paciente).getEnfermedades().equals(enfermedadFiltrar)){
-  					filtrados.add(paciente);
-  				}
-  			}
-  		}
-  		return filtrados;
+  	
+  	public ArrayList<EnfermoEnExtranjero> filtroEnfermosEnExtranjero(String enfermedadFiltrar) {
+  	    ArrayList<EnfermoEnExtranjero> filtrados = new ArrayList<>();
+
+  	    for (EnfermoEnExtranjero enf : enfermadosEnExterior) {
+  	        boolean coincide = false;
+  	        for (Enfermedad enfermedad : enf.getEnfermedades()) {
+  	            if (!coincide && enfermedad.getNombreComun().equalsIgnoreCase(enfermedadFiltrar)) {
+  	                coincide = true;
+  	            }
+  	        }
+  	        if (coincide) {
+  	            filtrados.add(enf);
+  	        }
+  	    }
+
+  	    return filtrados;
   	}
-    */
-    public ArrayList<EnfermoEnExtranjero> filtroEnfermosEnExtranjero(String enfermedadFiltrar) {
-        ArrayList<EnfermoEnExtranjero> filtrados = new ArrayList<>();
-        for (EnfermoEnExtranjero paciente : enfermadosEnExterior) {
-            for (Enfermedad enf : paciente.getEnfermedades()) {
-                if (enf.getNombreComun().equalsIgnoreCase(enfermedadFiltrar)) {
-                    filtrados.add(paciente);
-                    break;
-                }
-            }
-        }
-        return filtrados;
-    }
-}
+
+  
+ }
