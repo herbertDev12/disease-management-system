@@ -193,6 +193,33 @@ public class Principal extends JFrame {
 		mntmEnfermedadesConMayor.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermedadesConMayor);
 		
+		JMenuItem mntmBuscarPorEnfermedad = new JMenuItem("Filtrar pacientes nacionales por enfermedad");
+		mntmBuscarPorEnfermedad.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	Minsap minsap = new Minsap();
+		       
+		        minsap.cargarTodosLosPacientes(
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt",
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt"
+		        );
+				
+		        // Crear ventana para el panel de búsqueda
+		        JFrame frameBusqueda = new JFrame("Pacientes por Enfermedad");
+		        frameBusqueda.setSize(800, 600);
+		        frameBusqueda.setLocationRelativeTo(null);
+		        frameBusqueda.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        
+		        // Crear y agregar el panel
+		        BuscarPacientesEnfermedadPanel panelBusqueda = new BuscarPacientesEnfermedadPanel(minsap);
+		        frameBusqueda.add(panelBusqueda);
+		        
+		        // Mostrar la ventana
+		        frameBusqueda.setVisible(true);
+		    }
+		});
+		mntmBuscarPorEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
+		mnReportes.add(mntmBuscarPorEnfermedad);
+		
 		JMenuItem mntmCantidadDeInfectados = new JMenuItem("Cantidad de infectados en el exterior por fecha");
 		mntmCantidadDeInfectados.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmCantidadDeInfectados);

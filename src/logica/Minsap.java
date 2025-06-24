@@ -283,6 +283,23 @@ public class Minsap {
 
   	    return filtrados;
   	}
+  	
+  	public ArrayList<EnfermoNacional> getPacientesNacionalesConEnfermedad(String nombreEnfermedad) {
+  	    ArrayList<EnfermoNacional> pacientesFiltrados = new ArrayList<>();
+  	    
+  	    for (EnfermoNacional paciente : enfermadosEnCuba) {
+  	        boolean encontrado = false;
+  	        ArrayList<Enfermedad> enfermedades = paciente.getEnfermedades();
+  	        
+  	        for (int i = 0; i < enfermedades.size() && !encontrado; i++) {
+  	            if (enfermedades.get(i).getNombreComun().equalsIgnoreCase(nombreEnfermedad)) {
+  	                pacientesFiltrados.add(paciente);
+  	                encontrado = true;
+  	            }
+  	        }
+  	    }
+  	    return pacientesFiltrados;
+  	}
 
   
  }
