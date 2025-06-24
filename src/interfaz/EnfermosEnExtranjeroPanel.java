@@ -6,17 +6,18 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import logica.Enfermedad;
-import logica.EnfermoNacional;
+import logica.EnfermoEnExtranjero;
 import logica.Minsap;
+import logica.PaisVisitado;
 
 import java.awt.*;
 import java.util.List;
 
-public class EnfermosNacionalesPanel extends JPanel {
+public class EnfermosEnExtranjeroPanel extends JPanel {
     private JTable tablaEnfermos;
     private DefaultTableModel modeloTabla;
 
-    public EnfermosNacionalesPanel(Minsap minsap) {
+    public EnfermosEnExtranjeroPanel(Minsap minsap) {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         setBackground(new Color(240, 240, 240));
@@ -27,7 +28,8 @@ public class EnfermosNacionalesPanel extends JPanel {
             "Nombre y Apellidos",
             "Edad",
             "Dirección",
-            "Enfermedades"
+            "Enfermedades",
+            "Países visitados"
         };
         
         modeloTabla = new DefaultTableModel(columnas, 0) {
@@ -65,7 +67,7 @@ public class EnfermosNacionalesPanel extends JPanel {
         tablaEnfermos.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         tablaEnfermos.setSelectionBackground(new Color(173, 216, 230));
         
-        // Centrar contenido numérico (edad)
+        // Centrar contenido numérico (edad) 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         tablaEnfermos.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
@@ -82,7 +84,7 @@ public class EnfermosNacionalesPanel extends JPanel {
         // Panel de título
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         titlePanel.setBackground(new Color(240, 240, 240));
-        JLabel titleLabel = new JLabel("REGISTRO DE PACIENTES ENFERMADOS EN TERRITORIO NACIONAL");
+        JLabel titleLabel = new JLabel("REGISTRO DE PACIENTES ENFERMADOS EN TERRITORIO EXTRANJERO");
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         titleLabel.setForeground(new Color(70, 130, 180));
         titlePanel.add(titleLabel);
@@ -99,7 +101,7 @@ public class EnfermosNacionalesPanel extends JPanel {
 
     private void configurarAnchosColumnas() {
 
-        int[] anchos = {100, 250, 60, 300, 250}; 
+        int[] anchos = {100, 250, 60, 300, 250, 250}; 
         for (int i = 0; i < anchos.length; i++) {
             TableColumn column = tablaEnfermos.getColumnModel().getColumn(i);
             column.setPreferredWidth(anchos[i]);
@@ -109,16 +111,16 @@ public class EnfermosNacionalesPanel extends JPanel {
     }
 
     private void cargarDatosEnfermos(Minsap minsap) {
-        List<EnfermoNacional> enfermos = minsap.getAllEnfermosNacionales();
+        List<EnfermoEnExtranjero> enfermos = minsap.getAllEnfermosExtranjeros();
         
-        for (EnfermoNacional enfermo : enfermos) {
-            
+        for (EnfermoEnExtranjero enfermo : enfermos) {
             Object[] fila = {
                 enfermo.getCodigo(),
-                enfermo.getNombre(), 
+                enfermo.getNombre(),
                 enfermo.getEdad(),
                 enfermo.getDireccion(),
-                formatEnfermedades(enfermo.getEnfermedades())
+                formatEnfermedades(enfermo.getEnfermedades()),
+                formatPaisesVisitados(enfermo.getPaisesVisitados()) // Países formateados
             };
             modeloTabla.addRow(fila);
         }
@@ -132,6 +134,17 @@ public class EnfermosNacionalesPanel extends JPanel {
         }
         return sb.toString();
     }
+
+    // Nuevo método para formatear países
+    private String formatPaisesVisitados(List<PaisVisitado> paises) {
+        StringBuilder sb = new StringBuilder();
+        for (PaisVisitado pais : paises) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(pais.getNombre()); // Asume que PaisVisitado tiene método getNombre()
+        }
+        return sb.toString();
+    }
+
 
     private void resaltarFilas() {
         tablaEnfermos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -164,4 +177,3 @@ public class EnfermosNacionalesPanel extends JPanel {
         });
     }
 }
-

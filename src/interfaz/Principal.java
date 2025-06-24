@@ -92,7 +92,26 @@ public class Principal extends JFrame {
 		mntmAadirPaciente.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmAadirPaciente);
 		
-		JMenuItem mntmListaDePacientes = new JMenuItem("Lista de pacientes extranjeros ");
+		JMenuItem mntmListaDePacientes = new JMenuItem("Lista de pacientes enfermados en el extranjero");
+		mntmListaDePacientes.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+		        Minsap minsap = new Minsap();
+		        minsap.cargarPacientes("C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt");
+		        
+		        // Crear ventana para mostrar el panel
+		        JFrame framePacientesExtranjeros = new JFrame("Listado de Pacientes enfermos en el exterior");
+		        framePacientesExtranjeros.setSize(1400, 600);
+		        framePacientesExtranjeros.setLocationRelativeTo(null);
+		        framePacientesExtranjeros.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        
+		        // Crear y agregar el panel
+		        EnfermosEnExtranjeroPanel enfermosEnExtranjeroPanel = new EnfermosEnExtranjeroPanel(minsap);
+		        framePacientesExtranjeros.add(enfermosEnExtranjeroPanel);
+		        
+		        // Mostrar la ventana
+		        framePacientesExtranjeros.setVisible(true);
+		    }
+		});
 		mntmListaDePacientes.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmListaDePacientes);
 		
