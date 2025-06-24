@@ -51,7 +51,7 @@ public class EnfermedadesPanel extends JPanel {
             }
         };
         
-        // Crear tabla con características mejoradas
+        // Crear tabla 
         tablaEnfermedades = new JTable(modeloTabla);
         tablaEnfermedades.setAutoCreateRowSorter(true);
         tablaEnfermedades.setFillsViewportHeight(true);

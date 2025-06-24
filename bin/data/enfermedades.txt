@@ -1,1 +1,3 @@
 Turbea|Turbius|Sexual|123|curado
+COVID-19|SARS-CoV-2|Aerea|5|curado
+COVID-19|SARS-CoV-2|Aerea|5|curado

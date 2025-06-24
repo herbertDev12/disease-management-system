@@ -97,6 +97,25 @@ public class Principal extends JFrame {
 		mnGestionarPacientes.add(mntmListaDePacientes);
 		
 		JMenuItem mntmListaDePacientes_1 = new JMenuItem("Lista de pacientes nacionales ");
+		mntmListaDePacientes_1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+		        Minsap minsap = new Minsap();
+		        minsap.cargarPacientes("C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt");
+		        
+		        // Crear ventana para mostrar el panel
+		        JFrame framePacientesNacionales = new JFrame("Listado de Pacientes Nacionales");
+		        framePacientesNacionales.setSize(1400, 600);
+		        framePacientesNacionales.setLocationRelativeTo(null);
+		        framePacientesNacionales.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        
+		        // Crear y agregar el panel
+		        EnfermosNacionalesPanel enfermosNacionalesPanel = new EnfermosNacionalesPanel(minsap);
+		        framePacientesNacionales.add(enfermosNacionalesPanel);
+		        
+		        // Mostrar la ventana
+		        framePacientesNacionales.setVisible(true);
+		    }
+		});
 		mntmListaDePacientes_1.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarPacientes.add(mntmListaDePacientes_1);
 		
@@ -127,27 +146,7 @@ public class Principal extends JFrame {
 		});
 		mntmListaDeEnfermedades.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestionarEnfermedades.add(mntmListaDeEnfermedades);
-				
-		JMenuItem mntmEliminarEnfermedad = new JMenuItem("Eliminar enfermedad");
-		mntmEliminarEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarEnfermedades.add(mntmEliminarEnfermedad);
-		
-		JMenu mnGestionarAnlisis = new JMenu("Gestionar An\u00E1lisis");
-		mnGestionarAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestion.add(mnGestionarAnlisis);
-		
-		JMenuItem mntmAadirAnlisis = new JMenuItem("A\u00F1adir an\u00E1lisis");
-		mntmAadirAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarAnlisis.add(mntmAadirAnlisis);
-		
-		JMenuItem mntmListaDeAnlisis = new JMenuItem("Lista de an\u00E1lisis");
-		mntmListaDeAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarAnlisis.add(mntmListaDeAnlisis);
-		
-		JMenuItem mntmEliminarAnlisis = new JMenuItem("Eliminar an\u00E1lisis");
-		mntmEliminarAnlisis.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestionarAnlisis.add(mntmEliminarAnlisis);
-		
+						
 		JMenu mnReportes = new JMenu("Reportes ");
 		mnReportes.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
