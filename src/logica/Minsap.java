@@ -203,72 +203,68 @@ public class Minsap {
     
     // Reportes (se mantienen iguales)
   //Reportes
-  	public ArrayList<Enfermedad> enfermedadMayoresMuertos() {
-  	    ArrayList<Enfermedad> enfermedadMayoresMuertos = new ArrayList<>();
-  	    
-  	    if (enfermedades.isEmpty()) {
-  	        return enfermedadMayoresMuertos;
-  	    }
-  	    
-  	    int maxMuertos = 0;
+    public ArrayList<Enfermedad> enfermedadMayoresMuertos() {
+        ArrayList<Enfermedad> resultado = new ArrayList<>();
 
-  	    for (Enfermedad enfermedad : enfermedades) {
-  	        if (enfermedad.getMuertos() > maxMuertos) {
-  	            maxMuertos = enfermedad.getMuertos();
-  	            enfermedadMayoresMuertos.clear();
-  	            enfermedadMayoresMuertos.add(enfermedad);
-  	        } else if (enfermedad.getMuertos() == maxMuertos) {
-  	            enfermedadMayoresMuertos.add(enfermedad);
-  	        }
-  	    }
+        if (!enfermedades.isEmpty()) {
+            int maxMuertos = 0;
 
-  	    return enfermedadMayoresMuertos;
-  	}
+            for (Enfermedad enfermedad : enfermedades) {
+                if (enfermedad.getMuertos() > maxMuertos) {
+                    maxMuertos = enfermedad.getMuertos();
+                    resultado.clear();
+                    resultado.add(enfermedad);
+                } else if (enfermedad.getMuertos() == maxMuertos) {
+                    resultado.add(enfermedad);
+                }
+            }
+        }
 
-  	
-  	public ArrayList<Enfermedad> enfermedadMayoresCurados() {
-  	    ArrayList<Enfermedad> enfermedadMayoresCurados = new ArrayList<>();
-  	    
-  	    if (enfermedades.isEmpty()) {
-  	        return enfermedadMayoresCurados;
-  	    }
-  	    
-  	    int maxCurados = 0;
+        return resultado;
+    }
 
-  	    for (Enfermedad enfermedad : enfermedades) {
-  	        if (enfermedad.getCurados() > maxCurados) {
-  	            maxCurados = enfermedad.getCurados();
-  	            enfermedadMayoresCurados.clear();
-  	            enfermedadMayoresCurados.add(enfermedad);
-  	        } else if (enfermedad.getCurados() == maxCurados) {
-  	            enfermedadMayoresCurados.add(enfermedad);
-  	        }
-  	    }
 
-  	    return enfermedadMayoresCurados;
-  	}
+    public ArrayList<Enfermedad> enfermedadMayoresCurados() {
+        ArrayList<Enfermedad> resultado = new ArrayList<>();
 
-  	public ArrayList<Enfermedad> enfermedadMayoresActivos() {
-  	    ArrayList<Enfermedad> enfermedadMayoresActivos = new ArrayList<>();
-  	    
-  	    if (enfermedades.isEmpty()) {
-  	        return enfermedadMayoresActivos;
-  	    }
-  	    
-  	    int maxActivos = 0;
+        if (!enfermedades.isEmpty()) {
+            int maxCurados = 0;
 
-  	    for (Enfermedad enfermedad : enfermedades) {
-  	        if (enfermedad.getActivos() > maxActivos) {
-  	            maxActivos = enfermedad.getActivos();
-  	            enfermedadMayoresActivos.clear();
-  	            enfermedadMayoresActivos.add(enfermedad);
-  	        } else if (enfermedad.getActivos() == maxActivos) {
-  	            enfermedadMayoresActivos.add(enfermedad);
-  	        }
-  	    }
+            for (Enfermedad enfermedad : enfermedades) {
+                if (enfermedad.getCurados() > maxCurados) {
+                    maxCurados = enfermedad.getCurados();
+                    resultado.clear();
+                    resultado.add(enfermedad);
+                } else if (enfermedad.getCurados() == maxCurados) {
+                    resultado.add(enfermedad);
+                }
+            }
+        }
 
-  	    return enfermedadMayoresActivos;
-  	}
+        return resultado;
+    }
+
+    
+    public ArrayList<Enfermedad> enfermedadMayoresActivos() {
+        ArrayList<Enfermedad> resultado = new ArrayList<>();
+
+        if (!enfermedades.isEmpty()) {
+            int maxActivos = 0;
+
+            for (Enfermedad enfermedad : enfermedades) {
+                if (enfermedad.getActivos() > maxActivos) {
+                    maxActivos = enfermedad.getActivos();
+                    resultado.clear();
+                    resultado.add(enfermedad);
+                } else if (enfermedad.getActivos() == maxActivos) {
+                    resultado.add(enfermedad);
+                }
+            }
+        }
+
+        return resultado;
+    }
+
   	
   	public ArrayList<EnfermoEnExtranjero> filtroEnfermosEnExtranjero(String enfermedadFiltrar) {
   	    ArrayList<EnfermoEnExtranjero> filtrados = new ArrayList<>();
