@@ -174,11 +174,27 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmEnfermosEnEl = new JMenuItem("Enfermos en el extranjero dada una enfermedad");
 		mntmEnfermosEnEl.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FiltrarEnfermosEnExtranjero filtrarEnfermosEnExtranjero = FiltrarEnfermosEnExtranjero.getInstance();;
-				filtrarEnfermosEnExtranjero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				filtrarEnfermosEnExtranjero.setVisible(true);
-			}
+		    public void actionPerformed(ActionEvent arg0) {
+		        Minsap minsap = new Minsap();
+		        // Cargar datos antes de mostrar la ventana
+		        minsap.cargarTodosLosPacientes(
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt",
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt"
+		        );
+		        
+		        // Crear ventana para el panel de búsqueda
+		        JFrame frameBusqueda = new JFrame("Pacientes Extranjeros por Enfermedad");
+		        frameBusqueda.setSize(800, 600);
+		        frameBusqueda.setLocationRelativeTo(null);
+		        frameBusqueda.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        
+		        // Crear y agregar el panel
+		        BuscarPacientesExtranjerosEnfermedadPanel panelBusqueda = new BuscarPacientesExtranjerosEnfermedadPanel(minsap);
+		        frameBusqueda.add(panelBusqueda);
+		        
+		        // Mostrar la ventana
+		        frameBusqueda.setVisible(true);
+		    }
 		});
 		mntmEnfermosEnEl.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermosEnEl);
