@@ -57,27 +57,10 @@ public class Principal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnOpciones = new JMenu("Opciones");
-		mnOpciones.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnOpciones.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		menuBar.add(mnOpciones);
-		
-		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar Sesi\u00F3n");
-		mntmCerrarSesin.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnOpciones.add(mntmCerrarSesin);
-		
-		JMenuItem mntmCerrarPrograma = new JMenuItem("Cerrar Programa");
-		mntmCerrarPrograma.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnOpciones.add(mntmCerrarPrograma);
-		
 		JMenu mnGestion = new JMenu("Gesti\u00F3n");
 		mnGestion.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnGestion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuBar.add(mnGestion);
-		
-		JMenuItem mntmBsqueda = new JMenuItem("B\u00FAsqueda");
-		mntmBsqueda.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnGestion.add(mntmBsqueda);
 		
 		JMenu mnGestionarPacientes = new JMenu("Gestionar Pacientes ");
 		mnGestionarPacientes.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
@@ -244,10 +227,6 @@ public class Principal extends JFrame {
 		});
 		mntmBuscarPorEnfermedad.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmBuscarPorEnfermedad);
-		
-		JMenuItem mntmCantidadDeInfectados = new JMenuItem("Cantidad de infectados en el exterior por fecha");
-		mntmCantidadDeInfectados.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
-		mnReportes.add(mntmCantidadDeInfectados);
 		
 		JMenuItem mntmPorcentajeDePersonas = new JMenuItem("Porcentaje de personas con x enfermedad con respecto al total de personas enfermas");
 		mntmPorcentajeDePersonas.addActionListener(new ActionListener() {
