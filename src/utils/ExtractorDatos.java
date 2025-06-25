@@ -38,8 +38,8 @@ public class ExtractorDatos {
     private Object parsearLinea(String linea) {
         String[] campos = linea.split("\\|", -1);
         
-        // Actualizar para manejar 14 campos (extranjeros) y 13 campos (nacionales)
-        if (campos.length == 14) { // Paciente extranjero con 14 campos
+        
+        if (campos.length == 14) { 
             return parsearPacienteExtranjero(campos);
         } else if (campos.length == 13) { // Paciente nacional
             return parsearPacienteNacional(campos);
@@ -73,7 +73,6 @@ public class ExtractorDatos {
         // Tratamientos ahora está en el índice 12
         ArrayList<String> tratamientos = new ArrayList<>(Arrays.asList(campos[12].split(",")));
 
-        // Países visitados ahora está en el índice 13
         ArrayList<PaisVisitado> paises = new ArrayList<>();
         String[] paisesArray = campos[13].split(",");
         

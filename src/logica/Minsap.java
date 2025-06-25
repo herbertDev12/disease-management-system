@@ -50,7 +50,9 @@ public class Minsap {
     
     //Método para agregar enfermedades si no existen
     private void agregarEnfermedadSiNoExiste(Enfermedad nuevaEnfermedad) {
-        for (Enfermedad enfermedad : enfermedades) {
+    	boolean flag = false;
+        for (int i = 0; i < enfermedades.size() && !flag; i++) {
+        	Enfermedad enfermedad = enfermedades.get(i);
             if (enfermedad.getNombreComun().equalsIgnoreCase(nuevaEnfermedad.getNombreComun())) {
                 // Inicializar si es necesario
                 if (enfermedad.getRangoEdades() == null) {
@@ -61,43 +63,52 @@ public class Minsap {
                 }
                 
                 actualizarEstadisticasEnfermedad(enfermedad, nuevaEnfermedad);
-                return;
+                flag = true;
             }
         }
-        // Si no existe, agregar la nueva enfermedad
-        if (nuevaEnfermedad.getRangoEdades() == null) {
-            nuevaEnfermedad.setRangoEdades(new HashMap<String,Integer>());
+        if (!flag){
+        	if (nuevaEnfermedad.getRangoEdades() == null) {
+                nuevaEnfermedad.setRangoEdades(new HashMap<String,Integer>());
+            }
+            enfermedades.add(nuevaEnfermedad);
         }
-        enfermedades.add(nuevaEnfermedad);
+        
     }
 
     
     // Método para actualizar estadísticas de una enfermedad existente
     private void actualizarEstadisticasEnfermedad(Enfermedad existente, Enfermedad nueva) {
-        if (existente == null || nueva == null) return;
+    	boolean isVacio = false;
+    	
+        if (existente == null || nueva == null){
+        	isVacio = true;
+        };
         
-        // Inicializar si es necesario
-        if (existente.getRangoEdades() == null) {
-            existente.setRangoEdades(new HashMap<String,Integer>());
-        }
-        if (nueva.getRangoEdades() == null) {
-            nueva.setRangoEdades(new HashMap<String,Integer>());
+        if (!isVacio){
+        	// Inicializar si es necesario
+            if (existente.getRangoEdades() == null) {
+                existente.setRangoEdades(new HashMap<String,Integer>());
+            }
+            if (nueva.getRangoEdades() == null) {
+                nueva.setRangoEdades(new HashMap<String,Integer>());
+            }
+            
+            // Actualizar estadísticas básicas
+            existente.setCantidadPacientesHombres(existente.getCantidadPacientesHombres() + nueva.getCantidadPacientesHombres());
+            existente.setCantidadPacientesMujeres(existente.getCantidadPacientesMujeres() + nueva.getCantidadPacientesMujeres());
+            existente.setCurados(existente.getCurados() + nueva.getCurados());
+            existente.setMuertos(existente.getMuertos() + nueva.getMuertos());
+            existente.setActivos(existente.getActivos() + nueva.getActivos());
+            
+            // Actualizar rangos de edad
+            HashMap<String, Integer> rangosExistentes = existente.getRangoEdades();
+            for (Map.Entry<String, Integer> entry : nueva.getRangoEdades().entrySet()) {
+                String rango = entry.getKey();
+                int cantidad = entry.getValue();
+                rangosExistentes.put(rango, rangosExistentes.getOrDefault(rango, 0) + cantidad);
+            }
         }
         
-        // Actualizar estadísticas básicas
-        existente.setCantidadPacientesHombres(existente.getCantidadPacientesHombres() + nueva.getCantidadPacientesHombres());
-        existente.setCantidadPacientesMujeres(existente.getCantidadPacientesMujeres() + nueva.getCantidadPacientesMujeres());
-        existente.setCurados(existente.getCurados() + nueva.getCurados());
-        existente.setMuertos(existente.getMuertos() + nueva.getMuertos());
-        existente.setActivos(existente.getActivos() + nueva.getActivos());
-        
-        // Actualizar rangos de edad
-        HashMap<String, Integer> rangosExistentes = existente.getRangoEdades();
-        for (Map.Entry<String, Integer> entry : nueva.getRangoEdades().entrySet()) {
-            String rango = entry.getKey();
-            int cantidad = entry.getValue();
-            rangosExistentes.put(rango, rangosExistentes.getOrDefault(rango, 0) + cantidad);
-        }
     }
     
     public static boolean realizarAnalisis() {
@@ -142,66 +153,94 @@ public class Minsap {
     
     // Métodos para buscar pacientes por ID
     public EnfermoNacional getEnfermoNacional(String id) {
-        for (EnfermoNacional paciente : enfermadosEnCuba) {
+    	boolean encontrado = false;
+    	EnfermoNacional paciente = null;
+    	
+    	 for (int i = 0; i < enfermadosEnCuba.size() && !encontrado; i++) {
+         	paciente = enfermadosEnCuba.get(i);
             if (paciente.getCodigo().equals(id)) {
-                return paciente;
+            	encontrado = true;;
             }
-        }
-        return null;
+         }
+    	 
+    	 if (!encontrado){
+    		 paciente = null;
+    	 }
+        return paciente;
     }
     
     public EnfermoEnExtranjero getEnfermoExtranjero(String id) {
-        for (EnfermoEnExtranjero paciente : enfermadosEnExterior) {
+    	boolean encontrado = false;
+    	EnfermoEnExtranjero paciente = null;
+    	
+    	 for (int i = 0; i < enfermadosEnExterior.size() && !encontrado; i++) {
+         	paciente = enfermadosEnExterior.get(i);
             if (paciente.getCodigo().equals(id)) {
-                return paciente;
+            	encontrado = true;;
             }
-        }
-        return null;
+         }
+    	 
+    	 if (!encontrado){
+    		 paciente = null;
+    	 }
+        return paciente;
     }
     
     // Métodos para actualizar pacientes
     public void actualizarEnfermoNacional(String id, EnfermoNacional pacienteActualizado) {
-        for (int i = 0; i < enfermadosEnCuba.size(); i++) {
+    	boolean flag = false;
+    	
+        for (int i = 0; i < enfermadosEnCuba.size() && !flag; i++) {
             if (enfermadosEnCuba.get(i).getCodigo().equals(id)) {
                 enfermadosEnCuba.set(i, pacienteActualizado);
-                return;
+                flag = true;
             }
         }
-        System.err.println("Enfermo Nacional con ID " + id + " no encontrado");
+        if (!flag){
+        	System.err.println("Enfermo Nacional con ID " + id + " no encontrado");
+        }
     }
     
     public void actualizarEnfermoExtranjero(String id, EnfermoEnExtranjero pacienteActualizado) {
-        for (int i = 0; i < enfermadosEnExterior.size(); i++) {
+    	boolean flag = false;
+        for (int i = 0; i < enfermadosEnExterior.size() && !flag; i++) {
             if (enfermadosEnExterior.get(i).getCodigo().equals(id)) {
                 enfermadosEnExterior.set(i, pacienteActualizado);
-                return;
+                flag = true;
             }
         }
-        System.err.println("Enfermo Extranjero con ID " + id + " no encontrado");
+        if (!flag){
+        	System.err.println("Enfermo Extranjero con ID " + id + " no encontrado");
+        }
     }
     
     // Métodos para eliminar pacientes
     public void deleteEnfermoNacional(String id) {
-        for (int i = 0; i < enfermadosEnCuba.size(); i++) {
+    	boolean flag = false;
+        for (int i = 0; i < enfermadosEnCuba.size() && !flag; i++) {
             if (enfermadosEnCuba.get(i).getCodigo().equals(id)) {
                 enfermadosEnCuba.remove(i);
-                return;
+                flag = true;
             }
         }
-        System.err.println("Error: Enfermo Nacional con ID " + id + " no encontrado.");
+        if (!flag){
+        	System.err.println("Error: Enfermo Nacional con ID " + id + " no encontrado.");
+        }
     }
     
     public void deleteEnfermoExtranjero(String id) {
-        for (int i = 0; i < enfermadosEnExterior.size(); i++) {
+    	boolean flag = false;
+        for (int i = 0; i < enfermadosEnExterior.size() && !flag; i++) {
             if (enfermadosEnExterior.get(i).getCodigo().equals(id)) {
                 enfermadosEnExterior.remove(i);
-                return;
+                flag = true;
             }
         }
-        System.err.println("Error: Enfermo Extranjero con ID " + id + " no encontrado.");
+        if (!flag){
+        	System.err.println("Error: Enfermo Extranjero con ID " + id + " no encontrado.");
+        }
     }
     
-    // Reportes (se mantienen iguales)
   //Reportes
     public ArrayList<Enfermedad> enfermedadMayoresMuertos() {
         ArrayList<Enfermedad> resultado = new ArrayList<>();
@@ -303,12 +342,17 @@ public class Minsap {
   	
   	public double porcentajePersonasConEnfermedad(String nombreEnfermedad) {
   	    int totalEnfermos = enfermadosEnCuba.size() + enfermadosEnExterior.size();
-  	    if (totalEnfermos == 0) return 0.0;
+  	    double resultado = 0;
   	    
-  	    int conEnfermedad = getPacientesNacionalesConEnfermedad(nombreEnfermedad).size() 
-  	                      + filtroEnfermosEnExtranjero(nombreEnfermedad).size();
+  	    if (totalEnfermos == 0){
+  	    	resultado = 0.0;
+  	    }
+  	    else{
+  	    	int conEnfermedad = getPacientesNacionalesConEnfermedad(nombreEnfermedad).size() + filtroEnfermosEnExtranjero(nombreEnfermedad).size();
+  	    	resultado = (conEnfermedad * 100.0) / totalEnfermos;
+  	    }
   	    
-  	    return (conEnfermedad * 100.0) / totalEnfermos;
+  	    return resultado;
   	}
   
  }

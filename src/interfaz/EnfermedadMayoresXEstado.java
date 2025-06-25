@@ -30,7 +30,7 @@ import java.awt.SystemColor;
 public class EnfermedadMayoresXEstado extends JFrame {
     private static EnfermedadMayoresXEstado instancia;
     private JPanel contentPane;
-    private JTextArea textArea; // Cambiamos JList por JTextArea
+    private JTextArea textArea; 
     private Minsap minsap;
 
     private EnfermedadMayoresXEstado(Minsap minsap) {
@@ -47,7 +47,6 @@ public class EnfermedadMayoresXEstado extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
         
-        // Cambiamos a JTextArea con JScrollPane
         textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setLineWrap(true);

@@ -349,7 +349,7 @@ public class RegistroPaciente extends JFrame {
         
         // Panel para el formulario con desplazamiento
         JScrollPane formularioScroll = new JScrollPane(formularioPanel);
-        formularioScroll.setPreferredSize(new Dimension(400, 300)); // Ajustado para el nuevo campo
+        formularioScroll.setPreferredSize(new Dimension(400, 300)); 
         
         // Panel de botones
         JPanel panelBotones = new JPanel();
@@ -590,7 +590,7 @@ public class RegistroPaciente extends JFrame {
                 if (seleccion != null) {
                     if (seleccion.equals("Sí")) {
                     	isEnfermoEnExterior = true;
-                        // Habilitar componentes para agregar países
+                      
                         panelPaisesContent.setEnabled(true);
                         scrollPaises.setEnabled(true);
                         txtPais.setEnabled(true);
@@ -624,7 +624,7 @@ public class RegistroPaciente extends JFrame {
         lblPresioneElBoton.setBounds(50, 30, 400, 40); 
         panel.add(lblPresioneElBoton);
         
-        btnAnalizar = new JButton("REALIZAR ANÁLISIS");  // Asignar a campo de clase
+        btnAnalizar = new JButton("REALIZAR ANÁLISIS"); 
         btnAnalizar.setFont(new Font("Arial", Font.BOLD, 18)); 
         btnAnalizar.setBounds(100, 80, 300, 60);
         panel.add(btnAnalizar);

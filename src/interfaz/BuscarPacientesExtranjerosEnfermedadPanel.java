@@ -45,7 +45,7 @@ public class BuscarPacientesExtranjerosEnfermedadPanel extends JPanel {
         panelSuperior.add(lblEnfermedad);
         panelSuperior.add(comboEnfermedades);
         
-        // Configurar tabla (sin columna Ciudad)
+        // Configurar tabla 
         String[] columnas = {"Código", "Nombre y Apellidos", "Edad", "País"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
@@ -111,7 +111,7 @@ public class BuscarPacientesExtranjerosEnfermedadPanel extends JPanel {
                     paciente.getCodigo(),
                     paciente.getNombre(),
                     paciente.getEdad(),
-                    paises.toString() // Usar la cadena de nombres
+                    paises.toString() 
                 };
                 modeloTabla.addRow(fila);
             }

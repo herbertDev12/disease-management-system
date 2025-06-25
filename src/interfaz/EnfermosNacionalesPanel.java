@@ -65,7 +65,7 @@ public class EnfermosNacionalesPanel extends JPanel {
         tablaEnfermos.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         tablaEnfermos.setSelectionBackground(new Color(173, 216, 230));
         
-        // Centrar contenido numérico (edad)
+        // Centrar contenido numérico 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         tablaEnfermos.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
