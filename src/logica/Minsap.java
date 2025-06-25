@@ -300,6 +300,15 @@ public class Minsap {
   	    }
   	    return pacientesFiltrados;
   	}
-
+  	
+  	public double porcentajePersonasConEnfermedad(String nombreEnfermedad) {
+  	    int totalEnfermos = enfermadosEnCuba.size() + enfermadosEnExterior.size();
+  	    if (totalEnfermos == 0) return 0.0;
+  	    
+  	    int conEnfermedad = getPacientesNacionalesConEnfermedad(nombreEnfermedad).size() 
+  	                      + filtroEnfermosEnExtranjero(nombreEnfermedad).size();
+  	    
+  	    return (conEnfermedad * 100.0) / totalEnfermos;
+  	}
   
  }

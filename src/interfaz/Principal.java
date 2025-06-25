@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -182,16 +183,24 @@ public class Principal extends JFrame {
 		mntmEnfermosEnEl.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermosEnEl);
 		
-		JMenuItem mntmEnfermedadesConMayor = new JMenuItem("Enfermedades con mayor cantidad de pacientes en cierto estado ");
+		JMenuItem mntmEnfermedadesConMayor = new JMenuItem("Enfermedades con mayor cantidad de pacientes en cierto estado");
 		mntmEnfermedadesConMayor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EnfermedadMayoresXEstado enfermedadMayoresXEstado = EnfermedadMayoresXEstado.getInstance();
-				enfermedadMayoresXEstado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				enfermedadMayoresXEstado.setVisible(true);
-			}
+		    public void actionPerformed(ActionEvent arg0) {
+		        Minsap minsap = new Minsap();
+		        // Cargar datos antes de mostrar la ventana
+		        minsap.cargarTodosLosPacientes(
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt",
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt"
+		        );
+		        
+		        EnfermedadMayoresXEstado enfermedadMayoresXEstado = EnfermedadMayoresXEstado.getInstance(minsap);
+		        enfermedadMayoresXEstado.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		        enfermedadMayoresXEstado.setVisible(true);
+		    }
 		});
 		mntmEnfermedadesConMayor.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmEnfermedadesConMayor);
+
 		
 		JMenuItem mntmBuscarPorEnfermedad = new JMenuItem("Filtrar pacientes nacionales por enfermedad");
 		mntmBuscarPorEnfermedad.addActionListener(new ActionListener() {
@@ -224,7 +233,30 @@ public class Principal extends JFrame {
 		mntmCantidadDeInfectados.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmCantidadDeInfectados);
 		
-		JMenuItem mntmPorcentajeDePersonas = new JMenuItem("Porcentaje de personas con x enfermedad");
+		JMenuItem mntmPorcentajeDePersonas = new JMenuItem("Porcentaje de personas con x enfermedad con respecto al total de personas enfermas");
+		mntmPorcentajeDePersonas.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	Minsap minsap = new Minsap();
+			       
+		        minsap.cargarTodosLosPacientes(
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosNacional.txt",
+		            "C:\\herbert\\disease-management-system\\src\\data\\pacientesEnfermosExtranjero.txt"
+		        );
+		        String enfermedad = JOptionPane.showInputDialog(
+		            "Introduzca el nombre de la enfermedad:"
+		        );
+		        
+		        if (enfermedad != null && !enfermedad.trim().isEmpty()) {
+		            double porcentaje = minsap.porcentajePersonasConEnfermedad(enfermedad.trim());
+		            JOptionPane.showMessageDialog(
+		                null,
+		                String.format("Porcentaje de pacientes con '%s': %.2f%%", enfermedad, porcentaje),
+		                "Resultado",
+		                JOptionPane.INFORMATION_MESSAGE
+		            );
+		        }
+		    }
+		});
 		mntmPorcentajeDePersonas.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		mnReportes.add(mntmPorcentajeDePersonas);
 		fotoFondo = new JPanel();
