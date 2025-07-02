@@ -31,3 +31,6 @@
 2023-10-22 11:05:55|Carlos Ríos|8334353637|30|Masculino|Calle 63 #40-15|María Gómez|Dengue|DENV-1|Vectorial|7|activo|Hidratación|Argentina
 2023-10-21 15:00:50|Ana Herrera|8435363738|42|Femenino|Avenida 26 #33-20|Jorge Núñez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Estados Unidos2025-07-02 06:44:58|Frank|05032478956|20|masculino|Calle 5ta entre 42 y 44|Victor|Zelda|ZEldiviris|Aerea|200|activo|Agua y sol|Jamaica
 2025-07-02 06:48:33|Frank|09083422577|20|masculino|Calle 5ta|Juan|Zelda|Zeldiviris|Vectorial|66|activo|Trabajar|Jamaica
+2025-07-02 07:30:33|Juanka|45678909234|25|masculino|Calle 289 / 2390|guille|Covid-19|Covid|Aerea|12|muerto|Reposo|Jamaica
+2025-07-02 07:47:57|Guazo|09023456783|23|Masculino|5ta A|Forbello|Dengue|DENVE-2|Zoonotica|23|activo|Vitamina C, reposo y agua|Portugal
+2025-07-02 07:52:25|Rodny|23456788234|23|Masculino|Calle A34|Arrian|Covid-19|Covid|Aerea|12|muerto|Reposo y agua|Venezuela

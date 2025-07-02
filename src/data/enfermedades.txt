@@ -4,3 +4,11 @@ COVID-19|SARS-CoV-2|Aerea|5|curado
 Covid-19|Sarcosvs2|Aerea|34|curado
 Zelda|ZEldiviris|Aerea|200|activo
 Zelda|Zeldiviris|Vectorial|66|activo
+Covid-19|Covid|Aerea|12|muerto
+Fiebre Amarilla|DienguesFubries|Aerea|12|curado
+Fiebre Amarilla|Dengus Freskus|Zoonotica|23|activo
+Fiebre Amarilla|Febrosis Amarillosis|Aerea|23|activo
+Covid-19|Cividitis|Oral|123|curado
+Dengue|DENVE-2|Zoonotica|23|activo
+Covid-19|Covid|Vectorial|123|muerto
+Covid-19|Covid|Aerea|12|muerto

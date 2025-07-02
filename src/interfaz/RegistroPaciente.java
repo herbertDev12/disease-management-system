@@ -699,7 +699,7 @@ public class RegistroPaciente extends JFrame {
                 guardarEnfermedadesEnArchivo(enfermedades);
                 
                 // Determinar el tipo de paciente y guardar en el archivo correspondiente
-                if (!resultadoAnalisis && (hizoDiagnostico == 0 || txtDiagnostico.getText().equals("No"))) {
+                if (!resultadoAnalisis && (txtDiagnostico.getText().equals("No"))) {
                     // Paciente sin enfermedad
                     guardarPacienteNoEnfermo(nombre, id, edad, sexo, direccion);
                 } else if (resultadoAnalisis || hizoDiagnostico == 1) {

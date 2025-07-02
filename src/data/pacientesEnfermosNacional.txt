@@ -32,3 +32,8 @@
 2025-06-24 08:08:03|Juan|06053464266|29|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Hablar
 2025-06-24 08:11:53|Juan|12345678910|23|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Agua, reposo
 2025-07-02 06:33:53|Juan|09087890111|12|Masculino|Calle 1ra #28619|Kevin|Covid-19|Sarcosvs2|Aerea|34|curado|Reposo y tomar agua
+2025-07-02 07:33:17|Raul|09081245678|17|masculino|Calle 4ta|Jorge|Fiebre Amarilla|DienguesFubries|Aerea|12|curado|vitamina C
+2025-07-02 07:35:37|Rubius|96021464266|30|Masculino|Calle Valencia|Gavi|Fiebre Amarilla|Dengus Freskus|Zoonotica|23|activo|Vitamina C y reposo en cama
+2025-07-02 07:43:18|Omar|09087834567|24|Masculino|Calle 234|Julia|Fiebre Amarilla|Febrosis Amarillosis|Aerea|23|activo|Agua y reposo
+2025-07-02 07:45:00|Forbello|08987865432|45|Masculino|Calle 1ra|Raul|Covid-19|Cividitis|Oral|123|curado|Reposo en cama
+2025-07-02 07:50:30|Robert|78902345634|51|Masculino|Avenida Puerto|Rachel|Covid-19|Covid|Vectorial|123|muerto|reposo y agua
