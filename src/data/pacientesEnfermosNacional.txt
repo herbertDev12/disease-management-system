@@ -31,3 +31,4 @@
 2023-10-19 15:35:47|Diana Espinoza|6223343536|36|Femenino|Avenida 654, Villa|Roberto Núñez|Chikungunya|CHIKV|Vectorial|3|curado|Reposo
 2025-06-24 08:08:03|Juan|06053464266|29|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Hablar
 2025-06-24 08:11:53|Juan|12345678910|23|Masculino|Calle 1ra|Kevin|COVID-19|SARS-CoV-2|Aerea|5|curado|Agua, reposo
+2025-07-02 06:33:53|Juan|09087890111|12|Masculino|Calle 1ra #28619|Kevin|Covid-19|Sarcosvs2|Aerea|34|curado|Reposo y tomar agua

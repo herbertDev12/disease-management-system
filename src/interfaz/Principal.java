@@ -71,6 +71,7 @@ public class Principal extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				RegistroPaciente addPacienteFrame = new RegistroPaciente();
 				addPacienteFrame.setVisible(true);
+				addPacienteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
 		mntmAadirPaciente.setFont(new Font("Bahnschrift", Font.PLAIN, 20));

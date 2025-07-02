@@ -1,3 +1,6 @@
 Turbea|Turbius|Sexual|123|curado
 COVID-19|SARS-CoV-2|Aerea|5|curado
 COVID-19|SARS-CoV-2|Aerea|5|curado
+Covid-19|Sarcosvs2|Aerea|34|curado
+Zelda|ZEldiviris|Aerea|200|activo
+Zelda|Zeldiviris|Vectorial|66|activo

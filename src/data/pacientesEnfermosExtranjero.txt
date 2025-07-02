@@ -29,4 +29,5 @@
 2023-10-24 13:15:05|Juan Jiménez|8132333435|26|Masculino|Carrera 11 #25-30|Sofía Ramírez|COVID-19|SARS-CoV-2|Aérea|5|activo|Corticoides|Brasil
 2023-10-23 17:10:00|Laura Martínez|8233343536|48|Femenino|Diagonal 23 #10-22|Pedro Díaz|Chikungunya|CHIKV|Vectorial|3|curado|Antiinflamatorios|Venezuela
 2023-10-22 11:05:55|Carlos Ríos|8334353637|30|Masculino|Calle 63 #40-15|María Gómez|Dengue|DENV-1|Vectorial|7|activo|Hidratación|Argentina
-2023-10-21 15:00:50|Ana Herrera|8435363738|42|Femenino|Avenida 26 #33-20|Jorge Núñez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Estados Unidos
+2023-10-21 15:00:50|Ana Herrera|8435363738|42|Femenino|Avenida 26 #33-20|Jorge Núñez|COVID-19|SARS-CoV-2|Aérea|5|curado|Aislamiento|Estados Unidos2025-07-02 06:44:58|Frank|05032478956|20|masculino|Calle 5ta entre 42 y 44|Victor|Zelda|ZEldiviris|Aerea|200|activo|Agua y sol|Jamaica
+2025-07-02 06:48:33|Frank|09083422577|20|masculino|Calle 5ta|Juan|Zelda|Zeldiviris|Vectorial|66|activo|Trabajar|Jamaica
